@@ -2,7 +2,7 @@ import useGenerate from "@/hooks/useGenerate";
 import React from "react";
 
 const prompt =
-  "Convert this text to a programmatic command:\n\nExample: Ask Constance if we need some bread\nOutput: send-msg `find constance` Do we need some bread?\n\nReach out to the ski store and figure out if I can get my skis fixed before I leave on Thursday";
+  'Decide whether a Tweet\'s sentiment on a scale of 0 to 10.\n\nTweet: "I did not really like the new batman movie."\nSentiment:';
 
 const Page = () => {
   const text = useGenerate(prompt);
