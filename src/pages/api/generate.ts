@@ -5,7 +5,7 @@ if (!process.env.OPENAI_API_KEY) {
 }
 
 export const config = {
-  runtime: "edge",
+  runtime: "experimental-edge",
 };
 
 const handler = async (req: NextRequest): Promise<Response> => {

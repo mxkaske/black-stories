@@ -6,7 +6,7 @@ import React from "react";
 // https://www.beskar.co/blog/streaming-openai-completions-vercel-edge
 
 const useGenerate = (prompt?: string) => {
-  const [text, setText] = React.useState("");
+  const [text, setText] = React.useState<string>("");
 
   React.useEffect(() => {
     const fetchData = async () => {
@@ -75,7 +75,9 @@ const useGenerate = (prompt?: string) => {
         });
       }
     };
-    fetchData();
+    if (prompt) {
+      fetchData();
+    }
   }, [prompt]);
   return text;
 };
