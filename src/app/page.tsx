@@ -1,5 +1,5 @@
 import { redis } from "@/lib/upstash";
-import game from "@/lib/games/002.json";
+import game from "@/content/games/002.json";
 import { ChatInteraction } from "@/types";
 import { Form } from "./form";
 
