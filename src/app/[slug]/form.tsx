@@ -11,6 +11,7 @@ async function updateChat(url: string, { arg }: { arg: unknown }) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(arg), // REMINDER: { question, slug }
+    // next: { revalidate: 10 },
   });
 }
 

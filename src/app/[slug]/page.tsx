@@ -5,6 +5,9 @@ import { allGames } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { promptKeyBySlug } from "@/lib/prompt";
 
+// REMINDER: force page to be dynamic. See https://beta.nextjs.org/docs/api-reference/segment-config#dynamic
+export const dynamic = "force-dynamic";
+
 export async function generateStaticParams() {
   return allGames.map(({ slug }) => ({ slug }));
 }
