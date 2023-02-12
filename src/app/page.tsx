@@ -2,41 +2,29 @@ import { redis } from "@/lib/upstash";
 import game from "@/content/games/002.json";
 import { ChatInteraction } from "@/types";
 import { Form } from "./form";
-
-const key = "ip:id:chat";
-
-const getChatHistory = async () => {
-  // TODO: use zod validation instead of "as"
-  return (await redis.zrange(key, 0, -1)) as ChatInteraction[];
-};
-
-const appendChat = async (props: ChatInteraction) => {
-  return await redis.zadd(key, {
-    score: Date.now(),
-    member: props,
-  });
-};
+import { gameIdKey } from "@/lib/redis/keys";
 
 export default async function Home() {
-  const data = await getChatHistory();
-  // appendChat({
-  //   question: `Did she die by accident? ${Math.round(Math.random() * 100)}`,
-  //   answer: "Yes",
-  // });
+  const data = (await redis.zrange(gameIdKey, 0, -1)) as ChatInteraction[];
   return (
-    <div className="mx-auto max-w-xl grid gap-4">
-      <h1 className="text-3xl font-bold text-gray-900">{game.name}</h1>
-      <p className="text-lg text-gray-700">{game.description}</p>
-      {/* use `marker:text-gray-700 for decoration */}
-      <ol className="grid gap-3 list-decimal list-inside text-gray-900">
-        {data.map(({ question, answer }, i) => (
-          <li key={i}>
-            <span className="text-gray-700 font-light">{question}</span>
-            <span className="pl-1">{answer}</span>
-          </li>
-        ))}
-      </ol>
-      <Form />
-    </div>
+    <>
+      <div className="mx-auto grid max-w-xl gap-4">
+        <h1 className="text-3xl font-bold text-gray-900">{game.name}</h1>
+        <p className="text-lg text-gray-700">{game.description}</p>
+        {/* use `marker:text-gray-700 for decoration */}
+        <ol className="mb-4 grid list-inside list-decimal gap-3 text-gray-900">
+          {data.map(({ question, answer }, i) => (
+            <li key={i}>
+              <span className="font-light text-gray-700">{question}</span>
+              <span className="pl-1">{answer}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+      <div className="sticky inset-x-0 bottom-4 mx-auto max-w-xl rounded-xl border p-3 shadow-sm backdrop-blur-lg">
+        {/* maybe add progress bar in here? */}
+        <Form />
+      </div>
+    </>
   );
 }
