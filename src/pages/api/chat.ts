@@ -1,8 +1,7 @@
 import { createCompletion } from "@/lib/openai";
 import { NextApiRequest, NextApiResponse } from "next";
 import { redis } from "@/lib/upstash";
-import { generatePrompt } from "@/lib/prompt";
-import { gameIdKey } from "@/lib/redis/keys";
+import { generatePromptBySlug, promptKeyBySlug } from "@/lib/prompt";
 
 // REMINDER: timeout for serverless functions on vercel hobby plan is 10 seconds
 // REMINDER: timeout for edge functions on vercel hobby plan is 30 seconds
@@ -14,21 +13,22 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return res.status(405).end("Method Not Allowed");
   }
 
-  const { question } = req.body as {
+  const { question, slug } = req.body as {
     question?: string;
+    slug?: string;
   };
-  console.log(req.body);
 
-  if (!question) {
+  if (!question || !slug) {
     return res.status(400).end("Bad Request");
   }
 
-  const prompt = generatePrompt(question);
+  const prompt = generatePromptBySlug(slug, question);
   const response = await createCompletion(prompt);
   const data = response.data.choices[0].text;
 
   // append to redis chat history
-  await redis.zadd(gameIdKey, {
+  const key = promptKeyBySlug(slug);
+  await redis.zadd(key, {
     score: Date.now(),
     member: {
       question,

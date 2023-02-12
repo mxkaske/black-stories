@@ -1,5 +1,4 @@
 import useGenerate from "@/hooks/useGenerate";
-import { generatePrompt } from "@/lib/prompt";
 import React from "react";
 
 const prompt =
