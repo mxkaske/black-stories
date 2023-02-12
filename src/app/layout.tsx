@@ -1,5 +1,6 @@
 import "./globals.css";
 import { Inter } from "@next/font/google";
+import Footer from "./footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,8 @@ export default function RootLayout({
       */}
       <head />
       <body className={inter.className}>
-        <main className="mx-auto container p-4">{children}</main>
+        <main className="container mx-auto min-h-screen p-4">{children}</main>
+        <Footer />
       </body>
     </html>
   );

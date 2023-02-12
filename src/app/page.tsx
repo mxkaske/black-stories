@@ -1,30 +1,26 @@
-import { redis } from "@/lib/upstash";
-import game from "@/content/games/002.json";
-import { ChatInteraction } from "@/types";
-import { Form } from "./form";
-import { gameIdKey } from "@/lib/redis/keys";
+import { allGames } from "contentlayer/generated";
+import Link from "next/link";
 
 export default async function Home() {
-  const data = (await redis.zrange(gameIdKey, 0, -1)) as ChatInteraction[];
   return (
-    <>
-      <div className="mx-auto grid max-w-xl gap-4">
-        <h1 className="text-3xl font-bold text-gray-900">{game.name}</h1>
-        <p className="text-lg text-gray-700">{game.description}</p>
-        {/* use `marker:text-gray-700 for decoration */}
-        <ol className="mb-4 grid list-inside list-decimal gap-3 text-gray-900">
-          {data.map(({ question, answer }, i) => (
-            <li key={i}>
-              <span className="font-light text-gray-700">{question}</span>
-              <span className="pl-1">{answer}</span>
+    <div className="mx-auto grid max-w-xl gap-4">
+      <h1 className="text-3xl font-bold text-gray-900">Black Stories</h1>
+      <ul className="mb-4 grid gap-3 text-gray-900">
+        {allGames.map(({ title, slug, description }, i) => (
+          <Link
+            key={i}
+            href={`/${slug}`}
+            className="group rounded-lg border p-3 hover:bg-gray-50"
+          >
+            <li>
+              <p className="font-medium text-gray-900">{title}</p>
+              <p className="text-gray-500 line-clamp-1 group-hover:text-gray-700">
+                {description}
+              </p>
             </li>
-          ))}
-        </ol>
-      </div>
-      <div className="sticky inset-x-0 bottom-4 mx-auto max-w-xl rounded-xl border p-3 shadow-sm backdrop-blur-lg">
-        {/* maybe add progress bar in here? */}
-        <Form />
-      </div>
-    </>
+          </Link>
+        ))}
+      </ul>
+    </div>
   );
 }
