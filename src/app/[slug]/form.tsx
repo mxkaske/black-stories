@@ -10,7 +10,7 @@ async function updateChat(url: string, { arg }: { arg: unknown }) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(arg), // REMINDER: { question, slug }
+    body: JSON.stringify(arg), // REMINDER: { question }
     // next: { revalidate: 10 },
   });
 }
@@ -18,14 +18,17 @@ async function updateChat(url: string, { arg }: { arg: unknown }) {
 export function Form({ slug }: { slug: string }) {
   const ref = useRef<HTMLFormElement>(null);
   const router = useRouter();
-  const { trigger, isMutating } = useSWRMutation(`/api/chat`, updateChat);
+  const { trigger, isMutating } = useSWRMutation(
+    `/api/generate/${slug}`,
+    updateChat
+  );
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const target = e.target as typeof e.target & {
       question: { value: string };
     };
-    await trigger({ question: target.question.value, slug });
+    await trigger({ question: target.question.value });
     ref.current?.reset();
     router.refresh();
   }

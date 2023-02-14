@@ -4,10 +4,10 @@ import { Form } from "./form";
 import { allGames } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { promptKeyBySlug } from "@/lib/prompt";
+import { ResetButton } from "./reset-button";
 
-// REMINDER: force page to be dynamic. See https://beta.nextjs.org/docs/api-reference/segment-config#dynamic
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+// REMINDER: dynamic rerender https://beta.nextjs.org/docs/api-reference/segment-config#revalidate
+export const revalidate = process.env.NODE_ENV === "development" ? false : 0;
 
 export async function generateStaticParams() {
   return allGames.map(({ slug }) => ({ slug }));
@@ -41,6 +41,9 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       <div className="sticky inset-x-0 bottom-4 mx-auto max-w-xl rounded-xl border p-3 shadow-sm backdrop-blur-lg">
         {/* maybe add progress bar in here? */}
         <Form slug={params.slug} />
+      </div>
+      <div className="mx-auto max-w-xl p-4">
+        {data.length > 0 ? <ResetButton slug={params.slug} /> : null}
       </div>
     </>
   );

@@ -1,6 +1,7 @@
 import { allGames } from "contentlayer/generated";
 
-export const promptKeyBySlug = (slug: string) => `${slug}:ip`;
+// TODO: dynamic IP!
+export const promptKeyBySlug = (slug: string) => `game:${slug}:ip`;
 
 export const generatePromptBySlug = (slug: string, question: string) => {
   const game = allGames.find((game) => game.slug === slug);
