@@ -5,6 +5,7 @@ import { allGames } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { promptKeyBySlug } from "@/lib/prompt";
 import { ResetButton } from "./reset-button";
+import SolutionButton from "./solution-button";
 
 // REMINDER: dynamic rerender https://beta.nextjs.org/docs/api-reference/segment-config#revalidate
 export const revalidate = process.env.NODE_ENV === "development" ? false : 0;
@@ -42,8 +43,9 @@ export default async function Slug({ params }: { params: { slug: string } }) {
         {/* maybe add progress bar in here? */}
         <Form slug={params.slug} />
       </div>
-      <div className="mx-auto max-w-xl p-4">
+      <div className="mx-auto grid max-w-xl gap-4 p-4">
         {data.length > 0 ? <ResetButton slug={params.slug} /> : null}
+        <SolutionButton slug={params.slug} />
       </div>
     </>
   );

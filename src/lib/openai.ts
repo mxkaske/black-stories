@@ -1,5 +1,7 @@
 import { Configuration, OpenAIApi } from "openai";
 
+// DISCUSS if we need `openai` node sdk especially if using edge
+
 if (!process.env.OPENAI_API_KEY) {
   throw new Error("Missing Environment Variable OPENAI_API_KEY");
 }

@@ -19,6 +19,7 @@ export function ResetButton({ slug }: { slug: string }) {
   );
 
   async function onClick() {
+    // FIXME: cancel via "ENTER" will still trigger event
     if (confirm("Do you want to reset the game?")) {
       await trigger();
       router.refresh();
