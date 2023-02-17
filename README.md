@@ -15,3 +15,4 @@
 ### FIXME:
 
 - tailwindcss HMR troubles - downgraded next to `13.0.4` (see [Issue](https://github.com/tailwindlabs/tailwindcss/issues/9954))!
+- alert and confirm do not work as expected on mobile!
