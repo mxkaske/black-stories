@@ -29,15 +29,15 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
         const prompt = generatePromptBySlug(slug, question);
         const response = await createCompletion(prompt);
+        // `data` = "answer,significance"
         const data = response.data.choices[0].text;
+        const [answer, significance] = data?.split(",") || ["N/A", 0];
+        console.log({ data, answer, significance });
 
         // append to redis chat history
         await redis.zadd(key, {
           score: Date.now(),
-          member: {
-            question,
-            answer: data || "N/A",
-          },
+          member: { question, answer, significance },
         });
         // expire key after 10 hours
         // await redis.expire(key, 36000); // 60s * 60min * 10h

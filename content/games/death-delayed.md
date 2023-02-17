@@ -6,8 +6,14 @@ solution: A few days earlier Helen had been operated on. Before boarding the pla
 training:
   - question: Whould she die, if she had taken another transportation method?
     answer: Yes
+    significance: 3
   - question: Did she wanted to take another transportation method at the beginning?
     answer: No
+    significance: 0
+  - quesiton: Did she die?
+    answer: No
+    significance: 0
   - question: Was she alone when traveling?
     answer: N/A
+    significance: 0
 ---

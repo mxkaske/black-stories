@@ -6,8 +6,11 @@ solution: The woman is the assistant to a circus knife-thrower, who stands in fr
 training:
   - question: Does somebody kill her on purpose?
     answer: No
+    significance: 1
   - question: Did she die by accident?
     answer: Yes
+    significance: 3
   - question: And another person was involved?
     answer: Yes
+    significance: 1
 ---

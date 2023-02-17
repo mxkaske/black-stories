@@ -11,7 +11,7 @@ export const generatePromptBySlug = (slug: string, question: string) => {
   }
 
   return `
-We are playing a game called Death delayed. The description is known by the user and he/she needs to find the answer. You are only allowed to answer with "Yes", "No" or "N/A".
+We are playing a game called black stories. The description is known by the user and he/she needs to find the answer. You are only allowed to answer with "Yes", "No" or "N/A". Additionally to the allowed answer will be added a hole 'significance' number between 0 and 5 to describe the importance of the question.
 
 Description: ${game.description}
 
@@ -19,10 +19,10 @@ Solution: ${game.solution}
 
 Here are some examples for this specific game:
   ${game.training
-    ?.map(({ question, answer }) => {
+    ?.map(({ question, answer, significance }) => {
       return `
 Q: ${question}
-A: ${answer}    
+A: ${answer},${significance} 
     `;
     })
     .join("")}

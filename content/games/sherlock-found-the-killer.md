@@ -6,8 +6,11 @@ solution: The postman was the only man. The lawyer and the accountant were women
 training:
   - question: Where there three physical people in the room?
     answer: No
+    significance: 0
   - question: Was the postman the only one alive in the room?
     answer: Yes
+    significance: 5
   - question: Is it important why the postman killed the woman?
     answer: No
+    significance: 0
 ---
