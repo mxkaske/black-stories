@@ -28,13 +28,14 @@ export default async function Slug({ params }: { params: { slug: string } }) {
     <>
       <div className="mx-auto grid max-w-xl gap-4 py-4 sm:px-4">
         <h1 className="text-3xl font-bold text-gray-900">{game.title}</h1>
-        <p className="text-lg text-gray-700">{game.description}</p>
+        <p className="text-gray-700">{game.description}</p>
         {/* use `marker:text-gray-700 for decoration */}
         <ol className="mb-4 grid list-inside list-decimal gap-3 text-gray-900">
-          {data.map(({ question, answer }, i) => (
+          {data.map(({ question, answer, significance }, i) => (
             <li key={i}>
-              <span className="font-light text-gray-700">{question}</span>
-              <span className="pl-1">{answer}</span>
+              <span className="font-light">{question}</span>
+              <span className="p-1">{answer}</span>
+              <span className="text-sm text-gray-500">({significance})</span>
             </li>
           ))}
         </ol>
