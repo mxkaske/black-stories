@@ -40,7 +40,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           member: { question, answer, significance },
         });
         // expire key after 10 hours
-        // await redis.expire(key, 36000); // 60s * 60min * 10h
+        await redis.expire(key, 36000); // 60s * 60min * 10h
 
         return res.json({ data });
       }
