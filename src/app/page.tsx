@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default async function Home() {
   return (
-    <div className="mx-auto grid max-w-xl gap-4 p-4">
+    <div className="mx-auto grid max-w-xl gap-4 py-4 sm:px-4">
       <ul className="grid gap-4 text-gray-900">
         {allGames.map(({ title, slug, description }, i) => (
           <Link

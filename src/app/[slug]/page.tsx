@@ -26,7 +26,7 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <div className="mx-auto grid max-w-xl gap-4 p-4">
+      <div className="mx-auto grid max-w-xl gap-4 py-4 sm:px-4">
         <h1 className="text-3xl font-bold text-gray-900">{game.title}</h1>
         <p className="text-lg text-gray-700">{game.description}</p>
         {/* use `marker:text-gray-700 for decoration */}
@@ -43,7 +43,7 @@ export default async function Slug({ params }: { params: { slug: string } }) {
         {/* maybe add progress bar in here? */}
         <Form slug={params.slug} />
       </div>
-      <div className="mx-auto grid max-w-xl gap-4 p-4">
+      <div className="mx-auto grid max-w-xl gap-4 py-4 sm:px-4">
         {data.length > 0 ? <ResetButton slug={params.slug} /> : null}
         <SolutionButton slug={params.slug} />
       </div>
