@@ -1,7 +1,7 @@
 import { allGames } from "contentlayer/generated";
 
-// TODO: dynamic IP!
-export const promptKeyBySlug = (slug: string) => `game:${slug}:ip`;
+export const promptKeyBySlug = (slug: string, id = "id") =>
+  `game:${slug}:${id}`;
 
 export const generatePromptBySlug = (slug: string, question: string) => {
   const game = allGames.find((game) => game.slug === slug);
@@ -11,7 +11,7 @@ export const generatePromptBySlug = (slug: string, question: string) => {
   }
 
   return `
-We are playing a game called Death delayed. The description is known by the user and he/she needs to find the answer. You are only allowed to answer with a single word. Mostly "yes"/"no"/"somethines"/"probably"/"n/a",...
+We are playing a game called Death delayed. The description is known by the user and he/she needs to find the answer. You are only allowed to answer with "Yes", "No" or "N/A".
 
 Description: ${game.description}
 
