@@ -1,5 +1,7 @@
 "use client";
 
+import { Button } from "@/components/ui/button";
+import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
 import { FormEvent, useRef, KeyboardEvent } from "react";
 import useSWRMutation from "swr/mutation";
@@ -41,20 +43,17 @@ export function Form({ slug }: { slug: string }) {
 
   return (
     <form ref={ref} className="grid gap-2" onSubmit={onSubmit}>
-      <textarea
+      <Textarea
         name="question"
-        className="resize-none rounded-md border py-1 px-2 placeholder:text-gray-400"
+        className="resize-none bg-white/70" // make it slightly transparent with opacity-70
         placeholder="Did someone murder her?"
         disabled={isMutating}
         onKeyDown={onKeyDown}
         required
       />
-      <button
-        className="rounded-md border bg-white px-3 py-2 hover:bg-gray-50"
-        disabled={isMutating}
-      >
+      <Button disabled={isMutating}>
         {isMutating ? "Loading..." : "Ask Question"}
-      </button>
+      </Button>
     </form>
   );
 }

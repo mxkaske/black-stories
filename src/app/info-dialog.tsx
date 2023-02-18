@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -12,8 +13,10 @@ import { Info } from "lucide-react";
 export default function InfoDialog() {
   return (
     <Dialog>
-      <DialogTrigger>
-        <Info className="h-4 w-4" />
+      <DialogTrigger asChild>
+        <Button size="sm" variant="ghost">
+          <Info className="h-5 w-5" />
+        </Button>
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>

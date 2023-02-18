@@ -5,7 +5,7 @@ import * as AlertDialogPrimitive from "@radix-ui/react-alert-dialog";
 
 import { cn } from "@/lib/utils";
 
-// REMINDER: removed `dark:` utility classes from default and replace `slate` by `gray`
+// REMINDER: removed `dark:` utility classes from default, replaced `slate` by `gray`, added !asChild for Action/Cancel
 
 const AlertDialog = AlertDialogPrimitive.Root;
 
@@ -113,11 +113,13 @@ AlertDialogDescription.displayName =
 const AlertDialogAction = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Action>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Action>
->(({ className, ...props }, ref) => (
+>(({ className, asChild, ...props }, ref) => (
   <AlertDialogPrimitive.Action
     ref={ref}
+    asChild={asChild}
     className={cn(
-      "inline-flex h-10 items-center justify-center rounded-md bg-gray-900 py-2 px-4 text-sm font-semibold text-white transition-colors hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
+      !asChild &&
+        "inline-flex h-10 items-center justify-center rounded-md bg-gray-900 py-2 px-4 text-sm font-semibold text-white transition-colors hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50",
       className
     )}
     {...props}
@@ -128,11 +130,14 @@ AlertDialogAction.displayName = AlertDialogPrimitive.Action.displayName;
 const AlertDialogCancel = React.forwardRef<
   React.ElementRef<typeof AlertDialogPrimitive.Cancel>,
   React.ComponentPropsWithoutRef<typeof AlertDialogPrimitive.Cancel>
->(({ className, ...props }, ref) => (
+>(({ className, asChild, ...props }, ref) => (
   <AlertDialogPrimitive.Cancel
     ref={ref}
+    asChild={asChild}
     className={cn(
-      "mt-2 inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-transparent py-2 px-4 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:mt-0",
+      !asChild &&
+        "inline-flex h-10 items-center justify-center rounded-md border border-gray-200 bg-transparent py-2 px-4 text-sm font-semibold text-gray-900 transition-colors hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 sm:mt-0",
+      "mt-2",
       className
     )}
     {...props}

@@ -4,8 +4,8 @@ import { Form } from "./form";
 import { allGames } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { promptKeyBySlug } from "@/lib/prompt";
-import { ResetButton } from "./reset-button";
-import SolutionButton from "./solution-button";
+import ResetDialog from "./reset-dialog";
+import SolutionDialog from "./solution-dialog";
 
 // REMINDER: dynamic rerender https://beta.nextjs.org/docs/api-reference/segment-config#revalidate
 export const revalidate = process.env.NODE_ENV === "development" ? false : 0;
@@ -45,8 +45,8 @@ export default async function Slug({ params }: { params: { slug: string } }) {
         <Form slug={params.slug} />
       </div>
       <div className="mx-auto grid max-w-xl gap-4 py-4 sm:px-4">
-        {data.length > 0 ? <ResetButton slug={params.slug} /> : null}
-        <SolutionButton slug={params.slug} />
+        {data.length > 0 ? <ResetDialog slug={params.slug} /> : null}
+        <SolutionDialog slug={params.slug} />
       </div>
     </>
   );
