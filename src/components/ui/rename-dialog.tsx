@@ -6,6 +6,8 @@ import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
+// REMINDER: only removed `dark:` utility classes from default
+
 const Dialog = DialogPrimitive.Root;
 
 const DialogTrigger = DialogPrimitive.Trigger;
