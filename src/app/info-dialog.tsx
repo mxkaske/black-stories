@@ -20,7 +20,7 @@ export default function InfoDialog() {
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{`How does 'Black Stories' work?`}</DialogTitle>
+          <DialogTitle>{`How to play 'Black Stories'?`}</DialogTitle>
           <DialogDescription>
             <p>{`You will be confronted to a specific situation. The goal of this game will be to find out how something specific happened. You ask questions that can be answered with 'Yes' and 'No'.`}</p>
             <p>
