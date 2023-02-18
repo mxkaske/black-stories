@@ -2,6 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
+import { Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { FormEvent, useRef, KeyboardEvent } from "react";
 import useSWRMutation from "swr/mutation";
@@ -19,6 +20,7 @@ async function updateChat(url: string, { arg }: { arg: unknown }) {
 
 export function Form({ slug }: { slug: string }) {
   const ref = useRef<HTMLFormElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const router = useRouter();
   const { trigger, isMutating } = useSWRMutation(
     `/api/generate/${slug}`,
@@ -37,7 +39,10 @@ export function Form({ slug }: { slug: string }) {
 
   function onKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === "Enter") {
-      // ref.current?.submit();
+      e.preventDefault();
+      // REMINDER: ref.current?.submit() would refresh the whole page
+      // we are submitting the form via the submit button
+      buttonRef.current?.click();
     }
   }
 
@@ -51,8 +56,12 @@ export function Form({ slug }: { slug: string }) {
         onKeyDown={onKeyDown}
         required
       />
-      <Button disabled={isMutating}>
-        {isMutating ? "Loading..." : "Ask Question"}
+      <Button disabled={isMutating} ref={buttonRef}>
+        {isMutating ? (
+          <Loader2 className="h-5 w-5 animate-spin" />
+        ) : (
+          "Ask Question"
+        )}
       </Button>
     </form>
   );
