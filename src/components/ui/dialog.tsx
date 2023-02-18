@@ -6,7 +6,7 @@ import { X } from "lucide-react";
 
 import { cn } from "@/lib/utils";
 
-// REMINDER: only removed `dark:` utility classes from default
+// REMINDER: removed `dark:` utility classes from default and replace `slate` by `gray`
 
 const Dialog = DialogPrimitive.Root;
 
