@@ -7,7 +7,7 @@ import { X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 // REMINDER: removed `dark:` utility classes from default, replaced `slate` by `gray`,
-// added `bottom-0 sm:bottom-auto` to Content, removed `text-center sm:text-left` from Header
+// added `bottom-0 sm:bottom-auto` and replace `rounded-b-lg` with `-t-` to Content, removed `text-center sm:text-left` from Header
 
 const Dialog = DialogPrimitive.Root;
 
@@ -50,7 +50,7 @@ const DialogContent = React.forwardRef<
     <DialogPrimitive.Content
       ref={ref}
       className={cn(
-        "fixed bottom-0 z-50 grid w-full gap-4 rounded-b-lg bg-white p-6 animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:bottom-auto sm:max-w-lg sm:rounded-lg sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0",
+        "fixed bottom-0 z-50 grid w-full gap-4 rounded-t-lg bg-white p-6 animate-in data-[state=open]:fade-in-90 data-[state=open]:slide-in-from-bottom-10 sm:bottom-auto sm:max-w-lg sm:rounded-lg sm:zoom-in-90 data-[state=open]:sm:slide-in-from-bottom-0",
         className
       )}
       {...props}
