@@ -12,6 +12,8 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
+import { IconButton } from "@/components/ui/icon-button";
+import { Eraser, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
 
@@ -38,16 +40,18 @@ export default function ResetDialog({ slug }: { slug: string }) {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="ghost" disabled={isMutating}>
-          {isMutating ? "Reseting..." : "Reset Game"}
-        </Button>
+        {isMutating ? (
+          <IconButton name="loader2" className="animate-spin" disabled />
+        ) : (
+          <IconButton name="eraser" variant="destructive" />
+        )}
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Are you sure absolutely sure?</AlertDialogTitle>
+          <AlertDialogTitle>Are you sure to reset the game?</AlertDialogTitle>
           <AlertDialogDescription>
-            This action cannot be undone. This will permanently delete your
-            account and remove your data from our servers.
+            It will reset the history of the questions/answers and you can
+            restart the game. You cannot undo the action.
           </AlertDialogDescription>
         </AlertDialogHeader>
         <AlertDialogFooter>

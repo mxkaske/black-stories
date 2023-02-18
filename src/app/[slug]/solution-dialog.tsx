@@ -11,21 +11,44 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import { ReactNode, useReducer } from "react";
+import { cn } from "@/lib/utils";
+import { IconButton } from "@/components/ui/icon-button";
 
 export default function SolutionDialog({ slug }: { slug: string }) {
   const game = allGames.find((g) => g.slug === slug); // has to be defined, otherwise notFound() in page.tsx
-
   return (
     <Dialog>
       <DialogTrigger asChild>
-        <Button variant="outline">See Solution</Button>
+        <IconButton name="eye" variant="outline" />
       </DialogTrigger>
       <DialogContent>
         <DialogHeader>
-          <DialogTitle>{game?.title}</DialogTitle>
-          <DialogDescription>{game?.solution}</DialogDescription>
+          <DialogTitle>Solution</DialogTitle>
+          {/* TODO: change description */}
+          <DialogDescription>What happend in: {game?.title}</DialogDescription>
         </DialogHeader>
+        <DiscoverContent>{game?.solution}</DiscoverContent>
       </DialogContent>
     </Dialog>
+  );
+}
+
+// REMINDER: moved to separate Component to reset state in between
+function DiscoverContent({ children }: { children: ReactNode }) {
+  const [discover, toggle] = useReducer((prev) => !prev, false);
+  return (
+    <div className="relative">
+      <p className={cn("text-gray-700", !discover && "blur-sm")}>{children}</p>
+      {!discover ? (
+        <Button
+          variant="ghost"
+          className="absolute inset-0 flex h-full w-full items-center justify-center hover:bg-transparent"
+          onClick={toggle}
+        >
+          Click to Discover
+        </Button>
+      ) : undefined}
+    </div>
   );
 }
