@@ -11,6 +11,12 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { ReactNode, useReducer } from "react";
 import { cn } from "@/lib/utils";
 import { IconButton } from "@/components/ui/icon-button";
@@ -19,9 +25,18 @@ export default function SolutionDialog({ slug }: { slug: string }) {
   const game = allGames.find((g) => g.slug === slug); // has to be defined, otherwise notFound() in page.tsx
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <IconButton name="eye" variant="outline" />
-      </DialogTrigger>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <DialogTrigger asChild>
+              <IconButton name="eye" variant="outline" />
+            </DialogTrigger>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>See solution</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Solution</DialogTitle>

@@ -9,7 +9,7 @@ const iconButtonVariants = cva(
     variants: {
       variant: {
         default: "text-gray-900 hover:bg-gray-50",
-        destructive: "text-red-500 hover:bg-red-50",
+        destructive: "text-red-500 border-red-100 hover:bg-red-50",
         outline: "border-gray-200 hover:bg-gray-100",
       },
     },
@@ -42,6 +42,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         <Icon className="h-5 w-5" />
+        <span className="sr-only">{name}</span>
       </button>
     );
   }

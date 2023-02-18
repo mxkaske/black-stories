@@ -1,4 +1,3 @@
-import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
@@ -8,15 +7,29 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { IconButton } from "@/components/ui/icon-button";
-import { Info } from "lucide-react";
 
 export default function InfoDialog() {
   return (
     <Dialog>
-      <DialogTrigger asChild>
-        <IconButton name="info" />
-      </DialogTrigger>
+      <TooltipProvider>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <DialogTrigger asChild>
+              <IconButton name="info" />
+            </DialogTrigger>
+          </TooltipTrigger>
+          <TooltipContent>
+            <p>Instructions</p>
+          </TooltipContent>
+        </Tooltip>
+      </TooltipProvider>
       <DialogContent>
         <DialogHeader>
           <DialogTitle>{`How to play 'Black Stories'?`}</DialogTitle>

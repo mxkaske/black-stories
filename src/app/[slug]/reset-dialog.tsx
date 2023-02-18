@@ -11,9 +11,14 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { IconButton } from "@/components/ui/icon-button";
-import { Eraser, Loader2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
 
@@ -39,13 +44,22 @@ export default function ResetDialog({ slug }: { slug: string }) {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger asChild>
-        {isMutating ? (
-          <IconButton name="loader2" className="animate-spin" disabled />
-        ) : (
-          <IconButton name="eraser" variant="destructive" />
-        )}
-      </AlertDialogTrigger>
+      {isMutating ? (
+        <IconButton name="loader2" className="animate-spin" disabled />
+      ) : (
+        <TooltipProvider>
+          <Tooltip>
+            <TooltipTrigger asChild>
+              <AlertDialogTrigger asChild>
+                <IconButton name="eraser" variant="destructive" />
+              </AlertDialogTrigger>
+            </TooltipTrigger>
+            <TooltipContent>
+              <p>Reset game</p>
+            </TooltipContent>
+          </Tooltip>
+        </TooltipProvider>
+      )}
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Are you sure to reset the game?</AlertDialogTitle>
