@@ -1,6 +1,7 @@
 import { redis } from "@/lib/upstash";
 import { generatePromptBySlug, promptKeyBySlug } from "@/lib/prompt";
 import { NextRequest } from "next/server";
+import { ChatInteraction } from "@/types";
 
 // REMINDER: timeout for serverless functions on vercel hobby plan is 10 seconds
 // REMINDER: timeout for edge functions on vercel hobby plan is 30 seconds
@@ -22,10 +23,20 @@ const handler = async (req: NextRequest) => {
     if (!slug) {
       return new Response("Bad Request", { status: 400 });
     }
-    // TODO: add token
-    const key = promptKeyBySlug(slug);
+
+    const key = promptKeyBySlug(slug, token);
 
     switch (req.method) {
+      // REMINDER: while cookies().get("token") is not working on RSC, we use client side rendering to access data!
+      case "GET": {
+        const data = (await redis.zrange(key, 0, -1)) as ChatInteraction[];
+        return new Response(JSON.stringify(data), {
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "Set-Cookie": `token=${token}; Max-Age=${36000}; Path=${"/"}`,
+          },
+        });
+      }
       case "POST": {
         const { question } = (await req.json()) as { question?: string };
         if (!question) {

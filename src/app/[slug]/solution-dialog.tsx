@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { allGames } from "contentlayer/generated";
+import { Game } from "contentlayer/generated";
 import {
   Dialog,
   DialogContent,
@@ -21,8 +21,7 @@ import { ReactNode, useReducer } from "react";
 import { cn } from "@/lib/utils";
 import { IconButton } from "@/components/ui/icon-button";
 
-export default function SolutionDialog({ slug }: { slug: string }) {
-  const game = allGames.find((g) => g.slug === slug); // has to be defined, otherwise notFound() in page.tsx
+export default function SolutionDialog({ game }: { game: Game }) {
   return (
     <Dialog>
       <TooltipProvider>

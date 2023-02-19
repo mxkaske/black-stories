@@ -19,27 +19,18 @@ import {
 } from "@/components/ui/tooltip";
 import { Button } from "@/components/ui/button";
 import { IconButton } from "@/components/ui/icon-button";
-import { useRouter } from "next/navigation";
 import useSWRMutation from "swr/mutation";
+import { deleteRequest } from "@/lib/fetcher";
+import { Game } from "contentlayer/generated";
 
-// TODO: create a function fetcher(input: RequestInfo | URL, init?: RequestInit | undefined): Promise<Response>
-// allowing to 'merge' deleteChat and updateChat
-async function deleteChat(url: string, { arg }: { arg: unknown }) {
-  return fetch(url, {
-    method: "DELETE",
-  });
-}
-
-export default function ResetDialog({ slug }: { slug: string }) {
-  const router = useRouter();
+export default function ResetDialog({ game: {slug } }: { game: Game }) {
   const { trigger, isMutating } = useSWRMutation(
     `/api/generate/${slug}`,
-    deleteChat
+    deleteRequest
   );
 
   async function onClick() {
     await trigger();
-    router.refresh();
   }
 
   return (
