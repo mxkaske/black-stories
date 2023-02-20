@@ -63,32 +63,26 @@ const handler = async (req: NextRequest) => {
         const json = await response.json();
         const data = json.choices[0].text;
 
-        const [_answer, _significance] = data?.split(",");
+        const [_answer] = data?.split(",");
 
         const result = responseSchema.safeParse({
           answer: _answer,
-          significance: _significance,
         });
 
-        const { answer, significance } = result.success
-          ? result.data
-          : { answer: "N/A", significance: 0 };
+        const { answer } = result.success ? result.data : { answer: "N/A" };
 
         await redis.zadd(key, {
           score: Date.now(),
-          member: { question, answer, significance },
+          member: { question, answer },
         });
         await redis.expire(key, 3600); // 60s * 60min * 1h
 
-        return new Response(
-          JSON.stringify({ question, answer, significance }),
-          {
-            headers: {
-              "Content-Type": "application/json; charset=utf-8",
-              "Set-Cookie": `token=${token}; Max-Age=${3600}; Path=${"/"}`,
-            },
-          }
-        );
+        return new Response(JSON.stringify({ question, answer }), {
+          headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            "Set-Cookie": `token=${token}; Max-Age=${3600}; Path=${"/"}`,
+          },
+        });
       }
       case "DELETE": {
         await redis.del(key);

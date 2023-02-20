@@ -1,7 +1,6 @@
 import * as z from "zod";
 
-const ANSWERS = ["No", "Yes", "N/A"];
-// const SIGNIFICANCE = [0, 1, 2, 3, 4, 5] as const;
+export const ANSWERS = ["No", "Yes", "N/A", "Solved"] as const;
 
 export const responseSchema = z.object({
   answer: z
@@ -16,5 +15,4 @@ export const responseSchema = z.object({
       })
     )
     .transform((val) => val.trim()),
-  significance: z.coerce.number(),
 });

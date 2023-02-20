@@ -1,7 +1,6 @@
 export type ChatInteraction = {
   question: string;
   answer: string;
-  significance: number;
 };
 
 export type Game = {

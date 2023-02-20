@@ -7,6 +7,7 @@ import { promptKeyBySlug } from "@/lib/prompt";
 import ResetDialog from "./reset-dialog";
 import SolutionDialog from "./solution-dialog";
 import ShareButton from "./share-button";
+import { cn } from "@/lib/utils";
 
 // REMINDER: dynamic rerender https://beta.nextjs.org/docs/api-reference/segment-config#revalidate
 export const revalidate = process.env.NODE_ENV === "development" ? false : 0;
@@ -55,13 +56,23 @@ export default async function Slug({
         <p className="text-gray-700">{game.description}</p>
         {/* use `marker:text-gray-700 for decoration */}
         <ol className="mb-4 grid list-inside list-decimal gap-3 text-gray-900">
-          {data.map(({ question, answer, significance }, i) => (
-            <li key={i}>
-              <span className="font-light">{question}</span>
-              <span className="p-1">{answer}</span>
-              <span className="text-sm text-gray-500">({significance})</span>
-            </li>
-          ))}
+          {data.map(({ question, answer }, i) => {
+            return (
+              <li key={i}>
+                <span className="font-light">{question}</span>
+                <span
+                  className={cn("ml-1 p-1", {
+                    "text-red-600": answer === "No",
+                    "text-green-600": answer === "Yes",
+                    "text-gray-600": answer === "N/A",
+                    "rounded-md bg-green-500 text-white": answer === "Solved",
+                  })}
+                >
+                  {answer}
+                </span>
+              </li>
+            );
+          })}
         </ol>
       </div>
       <div className="sticky inset-x-0 bottom-4 mx-auto max-w-xl rounded-xl border p-3 shadow-sm backdrop-blur-lg">

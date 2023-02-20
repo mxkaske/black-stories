@@ -6,17 +6,14 @@ solution: The man avoided the cat because it was daylight.
 training:
   - question: Did he saw the black cat?
     answer: Yes
-    significance: 1
   - question: With is eyes?
     answer: Yes
-    significance: 1
   - question: Was there light outside?
     answer: Yes
-    significance: 3
   - question: Was there light from lamps?
     answer: No
-    significance: 0
   - question: Was there light from the sun?
-    answer: Yes
-    significance: 5
+    answer: Solved
+  - question: Was it daylight?
+    answer: Solved
 ---

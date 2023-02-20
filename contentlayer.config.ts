@@ -52,11 +52,6 @@ const Training = defineNestedType(() => ({
   fields: {
     question: { type: "string", required: true },
     answer: { type: "enum", options: ["Yes", "No", "N/A"], required: true },
-    // only whole numbers between 0 and 5
-    significance: {
-      type: "number",
-      required: true,
-    },
   },
 }));
 

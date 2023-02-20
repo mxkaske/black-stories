@@ -6,17 +6,12 @@ solution: Matthew was blind and he usually read bedtime stories to his son from 
 training:
   - question: With blackout, is electricity meant?
     answer: Yes
-    significance: 1
   - question: Where the lights really off?
     answer: Yes
-    significance: 1
   - question: But he could still read?
     answer: Yes
-    significance: 2
   - question: Was the man blind?
     answer: Yes
-    significance: 4
   - question: Could he read a braille book?
-    answer: Yes
-    significance: 5
+    answer: Solved
 ---
