@@ -14,15 +14,32 @@ export async function generateStaticParams() {
   return allGames.map(({ slug }) => ({ slug }));
 }
 
-export default async function Slug({ params }: { params: { slug: string } }) {
+export default async function Slug({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   const game = allGames.find((c) => c.slug === params.slug);
 
   if (!game) {
     notFound();
   }
 
-  const key = promptKeyBySlug(params.slug); // token
+  // FIXME: `cookies()` not working with `generateStaticParms`
+  // const token = cookies().get("token")?.value;
+  // TODO: remove later
+  const _token = searchParams?.["_token"] as string | undefined;
+  const key = promptKeyBySlug(params.slug, _token); // add token
   const data = (await redis.zrange(key, 0, -1)) as ChatInteraction[];
+
+  // const res = await fetch(
+  //   `${process.env.VERCEL_URL || "http://localhost:3000"}/api/generate/${
+  //     params.slug
+  //   }`
+  // );
+  // const data = (await res.json()) as ChatInteraction[];
 
   return (
     <>

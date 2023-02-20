@@ -55,7 +55,7 @@ export default function ResetDialog({ slug }: { slug: string }) {
               </AlertDialogTrigger>
             </TooltipTrigger>
             <TooltipContent>
-              <p>Reset game</p>
+              <p className="text-red-500">Reset game</p>
             </TooltipContent>
           </Tooltip>
         </TooltipProvider>
