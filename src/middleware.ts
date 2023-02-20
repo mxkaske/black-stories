@@ -32,10 +32,10 @@ export function middleware(request: NextRequest) {
   const _token = url.searchParams.get("_token");
   const { slug } = params(request.url) as { slug?: string };
   const token = request.cookies.get("token");
-  console.log(token, slug, _token);
+  // console.log(token, slug, _token);
   if (token && !_token) {
     url.searchParams.set("_token", token.value);
-    console.log(url);
+    // console.log(url);
     return NextResponse.rewrite(url);
   }
   return NextResponse.next();

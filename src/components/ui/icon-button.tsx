@@ -1,10 +1,10 @@
 import * as React from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { Eraser, Eye, Info, Loader2 } from "lucide-react";
+import { Eraser, Eye, Info, Loader2, Link } from "lucide-react";
 
 const iconButtonVariants = cva(
-  "p-1 border border-transparent rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
+  "p-2 border border-transparent rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
   {
     variants: {
       variant: {
@@ -20,6 +20,7 @@ const iconButtonVariants = cva(
 );
 
 const icons = {
+  link: Link,
   loader2: Loader2,
   eraser: Eraser,
   info: Info,
@@ -41,7 +42,7 @@ const IconButton = React.forwardRef<HTMLButtonElement, ButtonProps>(
         ref={ref}
         {...props}
       >
-        <Icon className="h-5 w-5" />
+        <Icon className="h-4 w-4" />
         <span className="sr-only">{name}</span>
       </button>
     );

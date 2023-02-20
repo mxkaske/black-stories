@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { promptKeyBySlug } from "@/lib/prompt";
 import ResetDialog from "./reset-dialog";
 import SolutionDialog from "./solution-dialog";
+import ShareButton from "./share-button";
 
 // REMINDER: dynamic rerender https://beta.nextjs.org/docs/api-reference/segment-config#revalidate
 export const revalidate = process.env.NODE_ENV === "development" ? false : 0;
@@ -46,7 +47,7 @@ export default async function Slug({
       <div className="mx-auto grid max-w-xl gap-4 py-4 sm:px-4">
         <div className="flex justify-between">
           <h1 className="text-3xl font-bold text-gray-900">{game.title}</h1>
-          <div className="flex w-24 items-start justify-end gap-2">
+          <div className="flex w-36 items-start justify-end gap-2">
             {data.length > 0 && <ResetDialog slug={params.slug} />}
             <SolutionDialog slug={params.slug} />
           </div>
