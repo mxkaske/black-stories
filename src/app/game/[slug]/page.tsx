@@ -55,17 +55,18 @@ export default async function Slug({
         </div>
         <p className="text-gray-700">{game.description}</p>
         {/* use `marker:text-gray-700 for decoration */}
-        <ol className="mb-4 grid list-inside list-decimal gap-3 text-gray-900">
+        <ol className="mb-4 grid list-inside list-decimal gap-2 text-gray-900">
           {data.map(({ question, answer }, i) => {
             return (
               <li key={i}>
-                <span className="font-light">{question}</span>
+                <span className="mr-2 font-light">{question}</span>
                 <span
-                  className={cn("ml-1 p-1", {
+                  className={cn({
                     "text-red-600": answer === "No",
                     "text-green-600": answer === "Yes",
                     "text-gray-600": answer === "N/A",
-                    "rounded-md bg-green-500 text-white": answer === "Solved",
+                    "rounded-md bg-green-500 px-1 text-white":
+                      answer === "Solved",
                   })}
                 >
                   {answer}
