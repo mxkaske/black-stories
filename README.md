@@ -6,6 +6,7 @@
 
 ### TODO:
 
+- Write a better instruction manual for the game (ChatGPT?) and add icons for quick visual feedback
 - Use Redis to store statistics about each game.
 - Get a percentage of completion of the story to see how much the user needs to answer more.
 - Help user by adding significance number for each question (by clicking a hint on button maybe)

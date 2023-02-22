@@ -63,11 +63,11 @@ const handler = async (req: NextRequest) => {
         const json = await response.json();
         const data = json.choices[0].text;
 
-        const [_answer] = data?.split(",");
-
         const result = responseSchema.safeParse({
-          answer: _answer,
+          answer: data,
         });
+
+        console.log({ data, result });
 
         const { answer } = result.success ? result.data : { answer: "N/A" };
 

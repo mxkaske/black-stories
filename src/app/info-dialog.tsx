@@ -35,11 +35,10 @@ export default function InfoDialog() {
           <DialogTitle>{`How to play 'Black Stories'?`}</DialogTitle>
           {/* <DialogDescription></DialogDescription> */}
         </DialogHeader>
-        <div className="text-gray-700">
-          <p>{`You will be confronted to a specific situation. The goal of this game will be to find out how something specific happened. You ask questions that can be answered with 'Yes' and 'No'.`}</p>
-          <p>
-            {`Every answer will have a significance value (0 - 5) that will help you to evaluate the question. The higher, the better.`}
-          </p>
+        <div className="space-y-2 text-sm text-gray-700">
+          <p>{`You will be confronted to a specific situation. The goal of this game will be to find out how something specific happened. You have to ask questions that can be answered with 'Yes', 'No' or 'N/A' if the answer is unspecific.`}</p>
+          <p>{`The game knows the context and remembers what you have asked.`}</p>
+          <p>{`The game is over when the answer is 'Solved'. Sometimes, you might need to help the bot with "Is it the reason why he died?".`}</p>
           <p className="pt-4 text-xs text-gray-500">
             {`This game is powered by OpenAI's GPT-3.`}
           </p>

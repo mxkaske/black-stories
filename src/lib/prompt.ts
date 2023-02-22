@@ -16,7 +16,7 @@ export const generatePromptBySlug = (
   }
 
   return `
-The description is known by the user and he/she needs to find the solution by asking questions. You are only allowed to answer with "Yes", "No", "N/A" or "Solved". You are only allowed to answer with "Solved" if the user, by the chat history, found the key points to the solutions. It doesn't have to be word by word.
+The description is known by the user and he/she needs to find the solution by asking questions. You are only allowed to answer with "Yes", "No", "N/A" or "Solved". You are only allowed to answer with "Solved" if the user, by the chat history, found the key points of solution. It doesn't have to sound sound the same.
 
 Description: ${game.description}
 
@@ -32,7 +32,7 @@ A: ${answer}
     })
     .join("")}
 
-Here is the user's history of questions and answers:
+Here is the user's chat history of what he already asked:
 ${history
   ?.map(({ question, answer }) => {
     return `
