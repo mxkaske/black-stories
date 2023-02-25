@@ -7,6 +7,7 @@ import { promptKeyBySlug } from "@/lib/prompt";
 import ResetDialog from "./components/reset-dialog";
 import SolutionDialog from "./components/solution-dialog";
 import { cn } from "@/lib/utils";
+import { cookies } from "next/headers";
 
 export default async function Slug({
   params,
@@ -15,18 +16,23 @@ export default async function Slug({
   params: { slug: string };
   searchParams?: { [key: string]: string | string[] | undefined };
 }) {
-  const game = allGames.find((c) => c.slug === params.slug);
+  const { slug } = params;
+  const game = allGames.find((c) => c.slug === slug);
 
   if (!game) {
     notFound();
   }
 
   // FIXME: `cookies()` not working with `generateStaticParms`
-  // const token = cookies().get("token")?.value;
+  const token = cookies().get("token")?.value;
   // TODO: remove later
-  const _token = searchParams?.["_token"] as string | undefined;
-  const key = promptKeyBySlug(params.slug, _token); // add token
-  const data = (await redis.zrange(key, 0, -1)) as ChatInteraction[];
+  // const _token = searchParams?.["_token"] as string | undefined;
+  const key = promptKeyBySlug(params.slug, token); // add token
+  const data = (await redis.zrange(
+    `game:${slug}:${token}`,
+    0,
+    -1
+  )) as ChatInteraction[];
 
   return (
     <>
