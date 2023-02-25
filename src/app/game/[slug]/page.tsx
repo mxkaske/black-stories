@@ -1,20 +1,12 @@
 import { redis } from "@/lib/upstash";
 import { ChatInteraction } from "@/types";
-import { Form } from "./form";
+import { Form } from "./components/form";
 import { allGames } from "contentlayer/generated";
 import { notFound } from "next/navigation";
 import { promptKeyBySlug } from "@/lib/prompt";
-import ResetDialog from "./reset-dialog";
-import SolutionDialog from "./solution-dialog";
-import ShareButton from "./share-button";
+import ResetDialog from "./components/reset-dialog";
+import SolutionDialog from "./components/solution-dialog";
 import { cn } from "@/lib/utils";
-
-// REMINDER: dynamic rerender https://beta.nextjs.org/docs/api-reference/segment-config#revalidate
-export const revalidate = process.env.NODE_ENV === "development" ? false : 0;
-
-export async function generateStaticParams() {
-  return allGames.map(({ slug }) => ({ slug }));
-}
 
 export default async function Slug({
   params,
@@ -35,13 +27,6 @@ export default async function Slug({
   const _token = searchParams?.["_token"] as string | undefined;
   const key = promptKeyBySlug(params.slug, _token); // add token
   const data = (await redis.zrange(key, 0, -1)) as ChatInteraction[];
-
-  // const res = await fetch(
-  //   `${process.env.VERCEL_URL || "http://localhost:3000"}/api/generate/${
-  //     params.slug
-  //   }`
-  // );
-  // const data = (await res.json()) as ChatInteraction[];
 
   return (
     <>
