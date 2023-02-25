@@ -19,3 +19,5 @@
 
 - tailwindcss HMR troubles - downgraded next to `13.0.4` (see [Issue](https://github.com/tailwindlabs/tailwindcss/issues/9954))!
 - once solved, use `cookies()` in RSC to access redis data (see [issue](https://github.com/vercel/next.js/issues/45979)). Currently, it works in `app/page.ts` but **not** in `app/[slug]/page.ts`. As a workaround, we are using `middleware` to [rewrite](https://nextjs.org/docs/api-reference/next.config.js/rewrites) the token within the `Response` as search param while masking the token! It is not seen for the user.
+
+REMINDER: for the latest Nextjs 13.2 upgrade, I did an `npm i --force` command. (conflicts with `next-contentlayer`) BUT reverted it back to 13.0.4 because of "Error: Page changed from static to dynamic at runtime"
