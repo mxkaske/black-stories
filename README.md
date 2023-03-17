@@ -20,6 +20,7 @@
 - Add a `trained` badge for trained games to let the user know about accuracy?
 - Add a `not accurate` button for solved games that have not been solved yet
 - we have two mixing types, in `validation` and `types`
+- replace `lucide` with `hero` icons
 
 ### FIXME:
 

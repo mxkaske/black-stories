@@ -1,6 +1,6 @@
 import { cn } from "@/lib/utils";
 import { ChatInteraction } from "@/types";
-import { CheckCircle2, MinusCircle, PartyPopper, XCircle } from "lucide-react";
+import { CheckCircle2, MinusCircle, Trophy, XCircle } from "lucide-react";
 
 export default function List({ data }: { data: ChatInteraction[] }) {
   return (
@@ -40,7 +40,7 @@ export const AnswerIcon = ({
     case "N/A":
       return <MinusCircle className={cn(rootClassname, "text-gray-600")} />;
     case "Solved":
-      return <PartyPopper className={cn(rootClassname, "text-green-500")} />;
+      return <Trophy className={cn(rootClassname, "text-yellow-500")} />;
     default:
       const _check: never = answer;
       return _check;
