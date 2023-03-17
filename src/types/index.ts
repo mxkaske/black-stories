@@ -1,6 +1,8 @@
+import { ANSWERS } from "@/lib/validation";
+
 export type ChatInteraction = {
   question: string;
-  answer: string;
+  answer: (typeof ANSWERS)[number];
 };
 
 export type Game = {

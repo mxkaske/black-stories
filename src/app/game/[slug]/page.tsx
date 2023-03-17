@@ -6,27 +6,35 @@ import { notFound } from "next/navigation";
 import { promptKeyBySlug } from "@/lib/prompt";
 import ResetDialog from "./components/reset-dialog";
 import SolutionDialog from "./components/solution-dialog";
-import { cn } from "@/lib/utils";
+import DISIButton from "./components/disi-button";
+import { cookies } from "next/headers";
+import ShareButton from "./components/share-button";
+import List from "./components/list";
 
-export default async function Slug({
-  params,
-  searchParams,
-}: {
-  params: { slug: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
+export default async function Slug({ params }: { params: { slug: string } }) {
   const game = allGames.find((c) => c.slug === params.slug);
 
   if (!game) {
     notFound();
   }
 
-  // FIXME: `cookies()` not working with `generateStaticParms`
-  // const token = cookies().get("token")?.value;
-  // TODO: remove later
-  const _token = searchParams?.["_token"] as string | undefined;
-  const key = promptKeyBySlug(params.slug, _token); // add token
+  const token = cookies().get("token")?.value;
+  const key = promptKeyBySlug(params.slug, token);
   const data = (await redis.zrange(key, 0, -1)) as ChatInteraction[];
+
+  // MOCK DATA
+  // const data: ChatInteraction[] = [
+  //   { question: "Did he die?", answer: "No" },
+  //   { question: "Is it dark?", answer: "Yes" },
+  //   { question: "Was he old?", answer: "N/A" },
+  //   { question: "Did I solve it?", answer: "No" },
+  //   { question: "Was he blind?", answer: "Yes" },
+  //   { question: "Thats how he avoided it?", answer: "Solved" },
+  //   // { question: "Did I solve it?", answer: "Solved" },
+  // ];
+
+  // TODO: check if vercel is compiling - last time it did not work
+  const isSolved = data.at(-1)?.answer === "Solved";
 
   return (
     <>
@@ -40,31 +48,21 @@ export default async function Slug({
         </div>
         <p className="text-gray-700">{game.description}</p>
         {/* use `marker:text-gray-700 for decoration */}
-        <ol className="mb-4 grid list-inside list-decimal gap-2 text-gray-900">
-          {data.map(({ question, answer }, i) => {
-            return (
-              <li key={i}>
-                <span className="mr-2 font-light">{question}</span>
-                <span
-                  className={cn({
-                    "text-red-600": answer === "No",
-                    "text-green-600": answer === "Yes",
-                    "text-gray-600": answer === "N/A",
-                    "rounded-md bg-green-500 px-1 text-white":
-                      answer === "Solved",
-                  })}
-                >
-                  {answer}
-                </span>
-              </li>
-            );
-          })}
-        </ol>
+        <List data={data} />
+        {/* TODO: add <Stats /> here */}
+        <div>{isSolved ? <ShareButton slug={params.slug} /> : null}</div>
       </div>
-      <div className="sticky inset-x-0 bottom-4 mx-auto max-w-xl rounded-xl border p-3 shadow-sm backdrop-blur-lg">
-        {/* maybe add progress bar in here? */}
-        <Form slug={params.slug} />
-      </div>
+      {!isSolved ? (
+        <div className="sticky inset-x-0 bottom-4 mx-auto max-w-xl">
+          {/* maybe add progress bar in here? */}
+          <div className="w-full bg-gradient-to-b from-transparent to-white/90 pb-2 text-right sm:px-4">
+            {data.length > 0 ? <DISIButton slug={params.slug} /> : null}
+          </div>
+          <div className="rounded-xl border p-3 shadow-sm backdrop-blur-lg">
+            <Form slug={params.slug} />
+          </div>
+        </div>
+      ) : null}
     </>
   );
 }

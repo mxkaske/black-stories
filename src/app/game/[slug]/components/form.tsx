@@ -7,14 +7,13 @@ import { useRouter } from "next/navigation";
 import { FormEvent, useRef, KeyboardEvent } from "react";
 import useSWRMutation from "swr/mutation";
 
-async function updateChat(url: string, { arg }: { arg: unknown }) {
+export async function updateChat(url: string, { arg }: { arg: unknown }) {
   return fetch(url, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(arg), // REMINDER: { question }
-    // next: { revalidate: 10 },
   });
 }
 

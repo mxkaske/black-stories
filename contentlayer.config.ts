@@ -1,8 +1,4 @@
-import {
-  defineDocumentType,
-  defineNestedType,
-  makeSource,
-} from "contentlayer/source-files";
+import { defineDocumentType, makeSource } from "contentlayer/source-files";
 
 export const Game = defineDocumentType(() => ({
   name: "Game",
@@ -29,11 +25,6 @@ export const Game = defineDocumentType(() => ({
       description: "The solution of the game",
       required: true,
     },
-    training: {
-      type: "list",
-      description: "The training of the game",
-      of: Training,
-    },
   },
   computedFields: {
     slug: {
@@ -44,14 +35,6 @@ export const Game = defineDocumentType(() => ({
       type: "string",
       resolve: (_) => `/game/${_._raw.sourceFileName.replace(/\.[^.$]+$/, "")}`,
     },
-  },
-}));
-
-const Training = defineNestedType(() => ({
-  name: "Training",
-  fields: {
-    question: { type: "string", required: true },
-    answer: { type: "enum", options: ["Yes", "No", "N/A"], required: true },
   },
 }));
 

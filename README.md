@@ -14,6 +14,12 @@
 - use cookie to store session (see [beta.nextjs.org](https://beta.nextjs.org/docs/api-reference/file-conventions/route#cookies))
 - add dynamic OG images like title of game and personalized data like number of questions till resolved or time needed.
 - use `route.ts` for app API routing (next bigger update)
+- add tips (in footer maybe - _not_ in information) like:
+  1. Is it important where/what/who?
+  2. ... (check for more tips)
+- Add a `trained` badge for trained games to let the user know about accuracy?
+- Add a `not accurate` button for solved games that have not been solved yet
+- we have two mixing types, in `validation` and `types`
 
 ### FIXME:
 

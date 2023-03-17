@@ -2,6 +2,7 @@ import { redis } from "@/lib/upstash";
 import { generatePromptBySlug, promptKeyBySlug } from "@/lib/prompt";
 import { NextRequest } from "next/server";
 import { responseSchema } from "@/lib/validation";
+import { ChatInteraction } from "@/types";
 
 // REMINDER: timeout for serverless functions on vercel hobby plan is 10 seconds
 // REMINDER: timeout for edge functions on vercel hobby plan is 30 seconds
@@ -23,7 +24,6 @@ const handler = async (req: NextRequest) => {
     if (!slug) {
       return new Response("Bad Request", { status: 400 });
     }
-    // TODO: add token
     const key = promptKeyBySlug(slug, token);
 
     switch (req.method) {
@@ -34,10 +34,14 @@ const handler = async (req: NextRequest) => {
           return new Response("Bad Request", { status: 400 });
         }
 
-        const prompt = generatePromptBySlug(slug, question);
+        const history = (await redis.zrange(key, 0, -1)) as ChatInteraction[];
+        const prompt = generatePromptBySlug(slug, question, history);
 
         const payload = {
           model: "text-davinci-003",
+          // TODO: move to model: "gpt-3.5-turbo"
+          // TBD: seems to not work... or use default models instead
+          // model: "davinci:ft-personal-2023-03-12-16-51-34", // TODO: move to `.env` file
           prompt,
           temperature: 0.7,
           top_p: 1,
@@ -67,6 +71,10 @@ const handler = async (req: NextRequest) => {
           answer: data,
         });
 
+        // TODO: if question is "Did I solve it?" and answer is "Solved", then
+        // return last element from sorted set with ZRANGE and replace answer to "Solved"
+        // TBD: When asking about DISI, getting a response like "No, you need to explain how the main avoided the cat."
+        // would help a lot I think
         console.log({ data, result });
 
         const { answer } = result.success ? result.data : { answer: "N/A" };
@@ -75,12 +83,12 @@ const handler = async (req: NextRequest) => {
           score: Date.now(),
           member: { question, answer },
         });
-        await redis.expire(key, 3600); // 60s * 60min * 1h
+        await redis.expire(key, 360000); // 60s * 60min * 100h
 
         return new Response(JSON.stringify({ question, answer }), {
           headers: {
             "Content-Type": "application/json; charset=utf-8",
-            "Set-Cookie": `token=${token}; Max-Age=${3600}; Path=${"/"}`,
+            "Set-Cookie": `token=${token}; Max-Age=${360000}; Path=${"/"}`,
           },
         });
       }

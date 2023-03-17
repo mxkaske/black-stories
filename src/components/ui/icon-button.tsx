@@ -1,10 +1,19 @@
 import * as React from "react";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn } from "@/lib/utils";
-import { Eraser, Eye, Info, Loader2, Link } from "lucide-react";
+import {
+  Eraser,
+  Eye,
+  Info,
+  Loader2,
+  Link,
+  Copy,
+  Check,
+  Share2,
+} from "lucide-react";
 
 const iconButtonVariants = cva(
-  "p-2 border border-transparent rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
+  "p-2 border border-transparent transition-colors focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none",
   {
     variants: {
       variant: {
@@ -12,9 +21,14 @@ const iconButtonVariants = cva(
         destructive: "text-red-500 border-red-100 hover:bg-red-50",
         outline: "border-gray-200 hover:bg-gray-100",
       },
+      shape: {
+        circle: "rounded-full",
+        square: "rounded-md",
+      },
     },
     defaultVariants: {
       variant: "default",
+      shape: "circle",
     },
   }
 );
@@ -25,6 +39,9 @@ const icons = {
   eraser: Eraser,
   info: Info,
   eye: Eye,
+  copy: Copy,
+  check: Check,
+  share: Share2,
 };
 
 export interface ButtonProps

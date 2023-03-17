@@ -5,7 +5,7 @@ export default function Footer() {
         <p className="text-center text-sm font-light">
           Built by{" "}
           <a
-            className="font-normal underline"
+            className="font-medium text-gray-900 underline-offset-4 hover:underline"
             href="https://twitter.com/mxkaske"
             target="_blank"
             rel="noreferrer"
@@ -14,7 +14,7 @@ export default function Footer() {
           </a>{" "}
           · Hosted on{" "}
           <a
-            className="font-normal underline"
+            className="font-medium text-gray-900 underline-offset-4 hover:underline"
             href="https://vercel.com"
             target="_blank"
             rel="noreferrer"
@@ -23,7 +23,7 @@ export default function Footer() {
           </a>{" "}
           · Source code available on{" "}
           <a
-            className="font-normal underline"
+            className="font-medium text-gray-900 underline-offset-4 hover:underline"
             href="https://github.com/mxkaske/black-stories"
             target="_blank"
             rel="noreferrer"

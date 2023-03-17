@@ -16,33 +16,24 @@ export const generatePromptBySlug = (
   }
 
   return `
-The description is known by the user and he/she needs to find the solution by asking questions. You are only allowed to answer with "Yes", "No", "N/A" or "Solved". You are only allowed to answer with "Solved" if the user, by the chat history, found the key points of solution. It doesn't have to sound sound the same.
+The description is known by the user and he/she needs to find the solution by asking questions. You are only allowed to answer with "Yes", "No", "N/A" or "Solved". You are only allowed to answer with "Solved" if the user, by the chat history, found the key points of solution. It doesn't have to sound the same.
 
 Description: ${game.description}
 
 Solution: ${game.solution}
 
-Here are some examples for this specific game:
-  ${game.training
-    ?.map(({ question, answer }) => {
-      return `
-Q: ${question}
-A: ${answer}
-    `;
-    })
-    .join("")}
-
-Here is the user's chat history of what he already asked:
-${history
-  ?.map(({ question, answer }) => {
-    return `
+${
+  history && history.length > 0
+    ? history
+        .map(({ question, answer }) => {
+          return `
 Q: ${question}
 A: ${answer}
   `;
-  })
-  .join("")}
-
-His current question is:
+        })
+        .join("")
+    : ""
+}
 Q: ${question}
 A: 
   `;

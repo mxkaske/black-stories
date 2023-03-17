@@ -1,13 +1,8 @@
 "use client";
 
-import { IconButton } from "@/components/ui/icon-button";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { useReducer } from "react";
+import { Button } from "@/components/ui/button";
+import { Check, Copy } from "lucide-react";
+import { useEffect, useState } from "react";
 
 // https://stackoverflow.com/a/40786371
 function getCookie(n: string) {
@@ -15,23 +10,37 @@ function getCookie(n: string) {
   return a ? a[1] : "";
 }
 
-export default function ShareButton() {
-  const [open, toggle] = useReducer((prev) => !prev, false);
+// TBD: Use HoverCard with OG Image Preview
+
+export default function ShareButton({ slug }: { slug: string }) {
+  const [clicked, setClicked] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setClicked(false);
+    }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [clicked]);
+
+  const getText = () => {
+    const _token = getCookie("token");
+    return `${window.location}?_token=${_token}`;
+  };
 
   const onClick = () => {
-    const _token = getCookie("token");
-    navigator.clipboard.writeText(`${window.location}?_token=${_token}`);
+    navigator.clipboard.writeText(getText());
+    setClicked(true);
   };
   return (
-    // <TooltipProvider>
-    //   <Tooltip>
-    //     <TooltipTrigger>
-    <IconButton name="link" variant="outline" onClick={onClick} />
-    //         </TooltipTrigger>
-    //         <TooltipContent>
-    //           <p>Copy link</p>
-    //         </TooltipContent>
-    //       </Tooltip>
-    //     </TooltipProvider>
+    <Button onClick={onClick} size="sm" variant="outline">
+      <span>Share your result & Challenge a friend</span>
+      {clicked ? (
+        <Check className="ml-1 h-4 w-4" />
+      ) : (
+        <Copy className="ml-1 h-4 w-4" />
+      )}
+    </Button>
   );
 }

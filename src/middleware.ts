@@ -4,9 +4,9 @@ import type { NextRequest } from "next/server";
 // https://nextjs.org/docs/messages/middleware-upgrade-guide#how-to-upgrade-4
 const PATTERNS = [
   [
-    // @ts-ignore cannot find ts type
+    // @ts-expect-error cannot find ts type
     new URLPattern({ pathname: "/game/:slug" }),
-    // @ts-ignore cannot find ts type
+    // @ts-expect-error cannot find ts type
     ({ pathname }) => pathname.groups,
   ],
 ];
@@ -32,12 +32,15 @@ export function middleware(request: NextRequest) {
   const _token = url.searchParams.get("_token");
   const { slug } = params(request.url) as { slug?: string };
   const token = request.cookies.get("token");
-  // console.log(token, slug, _token);
-  if (token && !_token) {
-    url.searchParams.set("_token", token.value);
-    // console.log(url);
-    return NextResponse.rewrite(url);
+  if (_token) {
+    // REMINDER: comment on development
+    url.searchParams.delete("_token");
+    return NextResponse.redirect(url); // difference to `.rewrite` - could be a tweet
   }
+  // if (token && !_token) {
+  //   url.searchParams.set("_token", token.value);
+  //   return NextResponse.rewrite(url);
+  // }
   return NextResponse.next();
 }
 
