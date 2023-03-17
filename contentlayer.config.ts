@@ -33,7 +33,7 @@ export const Game = defineDocumentType(() => ({
     },
     url: {
       type: "string",
-      resolve: (_) => `/game/${_._raw.sourceFileName.replace(/\.[^.$]+$/, "")}`,
+      resolve: (_) => `/${_._raw.sourceFileName.replace(/\.[^.$]+$/, "")}`,
     },
   },
 }));

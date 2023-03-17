@@ -45,5 +45,5 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: "/game/:slug*",
+  matcher: "/:slug*",
 };
