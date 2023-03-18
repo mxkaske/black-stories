@@ -9,6 +9,8 @@ import { allGames } from "contentlayer/generated";
 //   return allGames.map(({ slug }) => ({ slug }));
 // }
 
+export const dynamic = "force-dynamic";
+
 export default function LayoutPage({ children }: { children: ReactNode }) {
   return <>{children}</>;
 }

@@ -3,6 +3,8 @@ import { redis } from "@/lib/upstash";
 import { ChatInteraction } from "@/types";
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
+// MOCK DATA
+// import { data } from "@/lib/mock";
 
 export const config = {
   runtime: "experimental-edge",
@@ -15,6 +17,9 @@ export default async function OG(req: NextRequest) {
   const slug = searchParams.get("slug");
   const title = searchParams.get("title");
   const key = slug && _token ? promptKeyBySlug(slug, _token) : undefined;
+  const url = `${process.env.VERCEL_URL || "black-stories.vercel.app"}${
+    slug ? `/${slug}` : ""
+  }`;
   const data = key
     ? ((await redis.zrange(key, 0, -1)) as ChatInteraction[])
     : undefined;
@@ -27,16 +32,17 @@ export default async function OG(req: NextRequest) {
           width: "100%",
           display: "flex",
           flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          backgroundColor: "white",
+          padding: "2rem",
+          backgroundImage:
+            "linear-gradient(to bottom right, #0f172a 60%, #64748b)",
         }}
       >
-        <div tw="bg-gray-900 flex flex-col w-full h-full items-center justify-center">
-          <h2 tw="text-gray-200 text-5xl">
-            Black Stories {title ? `- ${title}` : undefined}
-          </h2>
-          {/* <p tw="text-gray-400 text-lg">OSS - Powered by Vercel and OpenAI</p> */}
+        <div tw="flex p-8">
+          <p tw="text-slate-200 text-3xl">Black Stories</p>
+        </div>
+        <div tw="flex-1 flex flex-col w-full h-full justify-center p-8">
+          <p tw="text-slate-200 text-5xl mb-2">{title}</p>
+          <p tw="text-slate-400 text-3xl mb-8">Find out what happened!</p>
           <ul tw="flex">
             {data?.map(({ answer }, i) => {
               switch (answer) {
@@ -45,8 +51,8 @@ export default async function OG(req: NextRequest) {
                     <li key={i} tw="text-green-500 mr-3">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
+                        width="48"
+                        height="48"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -64,8 +70,8 @@ export default async function OG(req: NextRequest) {
                     <li key={i} tw="text-red-500 mr-3">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
+                        width="48"
+                        height="48"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -84,8 +90,8 @@ export default async function OG(req: NextRequest) {
                     <li key={i} tw="text-gray-500 mr-3">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
+                        width="48"
+                        height="48"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -103,8 +109,8 @@ export default async function OG(req: NextRequest) {
                     <li key={i} tw="text-yellow-500 mr-3">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        width="24"
-                        height="24"
+                        width="48"
+                        height="48"
                         viewBox="0 0 24 24"
                         fill="none"
                         stroke="currentColor"
@@ -124,6 +130,9 @@ export default async function OG(req: NextRequest) {
               }
             })}
           </ul>
+        </div>
+        <div tw="flex p-8">
+          <p tw="text-slate-400 text-2xl">{url}</p>
         </div>
       </div>
     ),

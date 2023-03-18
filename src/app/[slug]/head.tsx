@@ -1,9 +1,14 @@
 import { allGames } from "contentlayer/generated";
+import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
+
+// searchParams is not supported in head.js
 
 export default function Head({ params }: { params: { slug: string } }) {
   // TODO: how to get url?_token or cookie()
+  const token = cookies().get("token");
   const game = allGames.find(({ slug }) => params.slug === slug);
+  console.log(params);
 
   if (!game) {
     notFound();
@@ -24,7 +29,7 @@ export default function Head({ params }: { params: { slug: string } }) {
       />
       <meta
         property="og:image"
-        content={`/api/og?slug=${params.slug}&title=${game.title}`}
+        content={`/api/og?slug=${params.slug}&title=${game.title}&_token=${token}`}
       />
     </>
   );

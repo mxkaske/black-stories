@@ -22,6 +22,10 @@
 - we have two mixing types, in `validation` and `types`
 - replace `lucide` with `hero` icons
 
+### TBD:
+
+- Twitter is [caching link cards for 7 days](https://developer.twitter.com/en/docs/twitter-for-websites/cards/guides/getting-started). The redis content will be deleted based on `ttl`. It will happen that the card image will change over time.
+
 ### FIXME:
 
 - tailwindcss HMR troubles - downgraded next to `13.0.4` (see [Issue](https://github.com/tailwindlabs/tailwindcss/issues/9954))!

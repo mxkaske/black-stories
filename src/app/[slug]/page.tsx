@@ -10,6 +10,8 @@ import DISIButton from "./components/disi-button";
 import { cookies } from "next/headers";
 import ShareButton from "./components/share-button";
 import List from "./components/list";
+// MOCK DATA
+// import { data } from "@/lib/mock";
 
 export default async function Slug({ params }: { params: { slug: string } }) {
   const game = allGames.find((c) => c.slug === params.slug);
@@ -21,17 +23,6 @@ export default async function Slug({ params }: { params: { slug: string } }) {
   const token = cookies().get("token")?.value;
   const key = promptKeyBySlug(params.slug, token);
   const data = (await redis.zrange(key, 0, -1)) as ChatInteraction[];
-
-  // MOCK DATA
-  // const data: ChatInteraction[] = [
-  //   { question: "Did he die?", answer: "No" },
-  //   { question: "Is it dark?", answer: "Yes" },
-  //   { question: "Was he old?", answer: "N/A" },
-  //   { question: "Did I solve it?", answer: "No" },
-  //   { question: "Was he blind?", answer: "Yes" },
-  //   { question: "Thats how he avoided it?", answer: "Solved" },
-  //   // { question: "Did I solve it?", answer: "Solved" },
-  // ];
 
   // TODO: check if vercel is compiling - last time it did not work
   const isSolved = data.at(-1)?.answer === "Solved";
