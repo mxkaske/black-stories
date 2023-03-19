@@ -12,8 +12,8 @@ import { cookies } from "next/headers";
 import ShareButton from "./components/share-button";
 import List from "./components/list";
 import type { Metadata } from "next";
-// MOCK DATA
-// import { data } from "@/lib/mock";
+import Link from "@/components/ui/link";
+import { ChevronLeft } from "lucide-react";
 
 export const dynamic = "force-dynamic";
 export const revalidate = 0;
@@ -27,10 +27,7 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 
   const token = cookies().get("token")?.value;
   const key = promptKeyBySlug(params.slug, token);
-  // REMINDER: here is the issue...
   const data = (await redis.zrange(key, 0, -1)) as ChatInteraction[];
-
-  // TODO: check if vercel is compiling - last time it did not work
   const isSolved = data.at(-1)?.answer === "Solved";
 
   return (
@@ -48,7 +45,18 @@ export default async function Slug({ params }: { params: { slug: string } }) {
         </p>
         <List data={data} />
         {/* TODO: add <Stats /> here */}
-        <div>{isSolved ? <ShareButton slug={params.slug} /> : null}</div>
+        {isSolved ? (
+          <div className="space-y-5">
+            <div className="text-center">
+              <ShareButton slug={params.slug} />
+            </div>
+            <div>
+              <Link href="/">
+                <ChevronLeft className="mb-1 inline h-4 w-4" /> Back
+              </Link>
+            </div>
+          </div>
+        ) : null}
       </div>
       {!isSolved ? (
         <div className="sticky inset-x-0 bottom-4 mx-auto max-w-xl">

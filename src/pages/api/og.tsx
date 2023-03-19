@@ -3,8 +3,6 @@ import { redis } from "@/lib/upstash";
 import { ChatInteraction } from "@/types";
 import { ImageResponse } from "@vercel/og";
 import { NextRequest } from "next/server";
-// MOCK DATA
-// import { data } from "@/lib/mock";
 
 export const config = {
   runtime: "experimental-edge",
@@ -12,8 +10,7 @@ export const config = {
 
 export default async function OG(req: NextRequest) {
   const { searchParams } = req.nextUrl;
-  // REMINDER: either get the cookie token from user or the searchParam _token
-  const _token = req.cookies.get("token")?.value || searchParams.get("_token");
+  const _token = searchParams.get("_token");
   const slug = searchParams.get("slug");
   const title = searchParams.get("title");
   const key = slug && _token ? promptKeyBySlug(slug, _token) : undefined;
@@ -21,6 +18,8 @@ export default async function OG(req: NextRequest) {
   const data = key
     ? ((await redis.zrange(key, 0, -1)) as ChatInteraction[])
     : undefined;
+  const description =
+    "Can you solve the dark and twisted puzzles of Black Stories?";
   return new ImageResponse(
     (
       <div
@@ -39,7 +38,7 @@ export default async function OG(req: NextRequest) {
         </div>
         <div tw="flex-1 flex flex-col w-full h-full justify-center p-8">
           <p tw="text-slate-200 text-5xl mb-2">{title}</p>
-          <p tw="text-slate-400 text-3xl mb-8">Find out what happened!</p>
+          <p tw="text-slate-400 text-3xl mb-8">{description}</p>
           <ul tw="flex items-center flex-wrap">
             {data?.map(({ answer }, i) => {
               return (
@@ -54,7 +53,7 @@ export default async function OG(req: NextRequest) {
           </ul>
         </div>
         <div tw="flex p-8">
-          <p tw="text-slate-400 text-2xl">{url}</p>
+          <p tw="text-slate-400 text-3xl">{url}</p>
         </div>
       </div>
     ),

@@ -34,7 +34,7 @@ export default function ShareButton({ slug }: { slug: string }) {
     setClicked(true);
   };
   return (
-    <Button onClick={onClick} size="sm" variant="outline">
+    <Button onClick={onClick} size="sm" variant="subtle">
       {clicked ? (
         <>
           <span>Link copied</span>
