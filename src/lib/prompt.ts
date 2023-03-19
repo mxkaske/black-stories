@@ -1,5 +1,6 @@
 import { ChatInteraction } from "@/types";
-import { allGames } from "contentlayer/generated";
+// import { allGames } from "contentlayer/generated";
+import allGames from "@/content/hotfix_allGames.json";
 
 export const promptKeyBySlug = (slug: string, id = "id") =>
   `game:${slug}:${id}`;

@@ -34,8 +34,8 @@ export function middleware(request: NextRequest) {
   const token = request.cookies.get("token");
   if (_token) {
     // REMINDER: comment on development
-    url.searchParams.delete("_token");
-    return NextResponse.redirect(url); // difference to `.rewrite` - could be a tweet
+    // url.searchParams.delete("_token");
+    // return NextResponse.redirect(url); // difference to `.rewrite` - could be a tweet
   }
   // if (token && !_token) {
   //   url.searchParams.set("_token", token.value);

@@ -1,12 +1,8 @@
-import { allGames } from "contentlayer/generated";
+// import { allGames } from "contentlayer/generated";
+import allGames from "@/content/hotfix_allGames.json";
 import Link from "next/link";
-import { cookies } from "next/headers";
 
 export default async function Home() {
-  // https://github.com/vercel/next.js/issues/45979
-  // REMINDER: currently, cookie cannot be access on dynamic pages, but accessible here
-  const cookiesStore = cookies();
-  console.log(cookiesStore.getAll());
   return (
     <div className="mx-auto grid max-w-xl gap-4 py-4 sm:px-4">
       <ul className="grid gap-4 text-gray-900">

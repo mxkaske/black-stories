@@ -3,6 +3,23 @@ import { Inter } from "@next/font/google";
 import Footer from "./components/footer";
 import Header from "./components/header";
 
+export const metadata = {
+  title: "Black Stories",
+  description: "Black Stories: OSS - Powered by Vercel and OpenAI",
+  icons: {
+    icon: "/favicon.ico",
+  },
+  openGraph: {
+    images: [
+      {
+        url: "/api/og",
+        width: 1200,
+        height: 630,
+      },
+    ],
+  },
+};
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({

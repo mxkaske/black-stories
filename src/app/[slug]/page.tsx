@@ -1,7 +1,8 @@
 import { redis } from "@/lib/upstash";
 import { ChatInteraction } from "@/types";
 import { Form } from "./components/form";
-import { allGames } from "contentlayer/generated";
+// import { allGames } from "contentlayer/generated";
+import allGames from "@/content/hotfix_allGames.json";
 import { notFound } from "next/navigation";
 import { promptKeyBySlug } from "@/lib/prompt";
 import ResetDialog from "./components/reset-dialog";
@@ -10,6 +11,7 @@ import DISIButton from "./components/disi-button";
 import { cookies } from "next/headers";
 import ShareButton from "./components/share-button";
 import List from "./components/list";
+import type { Metadata } from "next";
 // MOCK DATA
 // import { data } from "@/lib/mock";
 
@@ -57,4 +59,35 @@ export default async function Slug({ params }: { params: { slug: string } }) {
       ) : null}
     </>
   );
+}
+
+// REMINDER: Nextjs bug - searchParams only accessible in `page.tsx`
+export function generateMetadata({
+  params,
+  searchParams,
+}: {
+  params: { slug: string };
+  searchParams: { _token?: string };
+}): Metadata {
+  const { _token } = searchParams;
+  const game = allGames.find((c) => c.slug === params.slug);
+
+  if (!game) {
+    notFound();
+  }
+
+  return {
+    title: `Black Stories - ${game.title}`,
+    openGraph: {
+      images: [
+        {
+          url: `/api/og?title=${game.title}&slug=${game.slug}${
+            _token ? `&_token=${_token}` : ""
+          }`,
+          width: 1200,
+          height: 630,
+        },
+      ],
+    },
+  };
 }

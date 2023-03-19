@@ -38,7 +38,7 @@ export default function ResetDialog({ slug }: { slug: string }) {
   );
 
   async function onClick() {
-    await trigger();
+    await trigger(undefined);
     router.refresh();
   }
 

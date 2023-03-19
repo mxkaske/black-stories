@@ -21,7 +21,6 @@ export default async function OG(req: NextRequest) {
   const data = key
     ? ((await redis.zrange(key, 0, -1)) as ChatInteraction[])
     : undefined;
-  console.log({ _token, slug, title, data });
   return new ImageResponse(
     (
       <div

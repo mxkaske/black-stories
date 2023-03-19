@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "a-lethal-dinner",
+    "url": "/a-lethal-dinner",
+    "title": "A lethal dinner",
+    "date": "2023-03-13",
+    "description": "A woman is planning to kill her husband during dinner. However, she commits suicide while preparing it.",
+    "solution": "She was planning to kill him by poisoning the food with some pills that she had in her bag. When she went to grab them, she noticed that they were not there, and that her son had swallowed them, thinking they were sweets. She couldn't bear it and took her own life."
+  },
+  {
+    "slug": "death-delayed",
+    "url": "/death-delayed",
+    "title": "Death delayed",
+    "date": "2023-02-12",
+    "description": "Helen never thought that her decision to travel by plane would save her life.",
+    "solution": "A few days earlier Helen had been operated on. Before boarding the plane, she had to go through the metal detector, which kept going off, despite the fact that she had removed everything metal she had on. After an X-ray examination, it was discovered that the doctors had left a scalpel inside her body. If Helen had not discovered it in time, she would died for sure."
+  },
+  {
+    "slug": "fatal-shot",
+    "url": "/fatal-shot",
+    "title": "Fatal shot",
+    "date": "2023-03-13",
+    "description": "A hunter aimed his gun carefully and fired. Seconds later, he realized his mistake. Minutes later, he was dead.",
+    "solution": "He hunted in snow-capped mountains. The shot provoked an avalanche, which covered the man. He died of strangulation."
+  },
+  {
+    "slug": "mortal-shoes",
+    "url": "/mortal-shoes",
+    "title": "Mortal shoes",
+    "date": "2023-02-12",
+    "description": "A woman buys a new pair of shoes, goes to work, and dies.",
+    "solution": "The woman is the assistant to a circus knife-thrower, who stands in front of a target as knives are thrown around her. The new shoes have higher heels than she normally wears, causing the thrower to misjudge his aim."
+  },
+  {
+    "slug": "sherlock-found-the-killer",
+    "url": "/sherlock-found-the-killer",
+    "title": "Sherlock found the killer",
+    "date": "2023-02-15",
+    "description": "Sherlock Holmes was walking down the corridor. Suddenly he heard a woman screaming, “Please, John, don’t kill me!” A shot rang. Holmes burst into the room. In one corner lay a dead woman and a gun. In another corner stood a postman, a lawyer, and an accountant. Sherlock looked at them, approached the postman, and grabbed him - “I will arrest you for killing this woman.” It was really the postman who killed this woman, but how could Holmes know it?",
+    "solution": "The postman was the only man. The lawyer and the accountant were women."
+  },
+  {
+    "slug": "sweet-dreams",
+    "url": "/sweet-dreams",
+    "title": "Sweet dreams",
+    "date": "2023-02-12",
+    "description": "Matthew keeps reading a bedtime story to his son despite the blackout.",
+    "solution": "Matthew was blind and he usually read bedtime stories to his son from a braille book. That night there was a blackout, but this did not stop him from finishing the story."
+  },
+  {
+    "slug": "the-black-cat",
+    "url": "/the-black-cat",
+    "title": "The Black Cat",
+    "date": "2023-02-12",
+    "description": "A black cat is walking through the middle of a road where there is a broken street lamp. A man is driving his vehicle with headlights that do not work. Despite all of this, he is able to avoid harming the cat.",
+    "solution": "The man avoided the cat because it was daylight."
+  }
+]

@@ -1,7 +1,8 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { allGames } from "contentlayer/generated";
+// import { allGames } from "contentlayer/generated";
+import allGames from "@/content/hotfix_allGames.json";
 import {
   Dialog,
   DialogContent,
