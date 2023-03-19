@@ -5,7 +5,7 @@ import type { NextRequest } from "next/server";
 const PATTERNS = [
   [
     // @ts-expect-error cannot find ts type
-    new URLPattern({ pathname: "/game/:slug" }),
+    new URLPattern({ pathname: "/:slug" }),
     // @ts-expect-error cannot find ts type
     ({ pathname }) => pathname.groups,
   ],
@@ -25,8 +25,6 @@ const params = (url: string) => {
   return result;
 };
 
-// TODO: if already _token exists (for shareable OG-Image), we will need to overwrite it!
-
 export function middleware(request: NextRequest) {
   const url = request.nextUrl;
   const _token = url.searchParams.get("_token");
@@ -35,8 +33,9 @@ export function middleware(request: NextRequest) {
   if (_token) {
     // REMINDER: comment on development
     // TO FIND OUT: will it destroy the og image?
-    url.searchParams.delete("_token");
-    return NextResponse.redirect(url); // difference to `.rewrite` - could be a tweet
+    // DOENST WORK -...
+    // url.searchParams.delete("_token");
+    // return NextResponse.redirect(url); // difference to `.rewrite` - could be a tweet
   }
   // if (token && !_token) {
   //   url.searchParams.set("_token", token.value);
