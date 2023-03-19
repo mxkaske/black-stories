@@ -16,6 +16,7 @@ import type { Metadata } from "next";
 // import { data } from "@/lib/mock";
 
 export const dynamic = "force-dynamic";
+export const revalidate = 0;
 
 export default async function Slug({ params }: { params: { slug: string } }) {
   const game = allGames.find((c) => c.slug === params.slug);
