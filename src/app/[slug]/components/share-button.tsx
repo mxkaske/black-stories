@@ -35,11 +35,16 @@ export default function ShareButton({ slug }: { slug: string }) {
   };
   return (
     <Button onClick={onClick} size="sm" variant="outline">
-      <span>Share your result & Challenge a friend</span>
       {clicked ? (
-        <Check className="ml-1 h-4 w-4" />
+        <>
+          <span>Link copied</span>
+          <Check className="ml-1 h-4 w-4" />
+        </>
       ) : (
-        <Copy className="ml-1 h-4 w-4" />
+        <>
+          <span>Challenge a friend</span>
+          <Copy className="ml-1 h-4 w-4" />
+        </>
       )}
     </Button>
   );

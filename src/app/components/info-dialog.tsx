@@ -48,7 +48,7 @@ export default function InfoDialog() {
             {ANSWERS.map((answer) => (
               <li key={answer}>
                 <AnswerIcon answer={answer} />
-                <span className="text-xs font-light uppercase tracking-wide">
+                <span className="ml-2 text-xs font-light uppercase tracking-wide">
                   {answer}
                 </span>
               </li>

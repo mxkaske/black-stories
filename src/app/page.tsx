@@ -14,7 +14,7 @@ export default async function Home() {
           <Link
             key={i}
             href={url}
-            className="group rounded-lg border py-3 px-4 hover:bg-gray-50"
+            className="group rounded-lg border border-gray-100 py-3 px-4 hover:border-gray-200"
           >
             <li>
               <p className="font-medium text-gray-900">{title}</p>

@@ -37,8 +37,9 @@ export default async function Slug({ params }: { params: { slug: string } }) {
             <SolutionDialog slug={params.slug} />
           </div>
         </div>
-        <p className="text-gray-700">{game.description}</p>
-        {/* use `marker:text-gray-700 for decoration */}
+        <p className="border-b border-gray-100 pb-4 text-gray-600">
+          {game.description}
+        </p>
         <List data={data} />
         {/* TODO: add <Stats /> here */}
         <div>{isSolved ? <ShareButton slug={params.slug} /> : null}</div>

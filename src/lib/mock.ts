@@ -6,6 +6,10 @@ export const data: ChatInteraction[] = [
   { question: "Was he old?", answer: "N/A" },
   { question: "Did I solve it?", answer: "No" },
   { question: "Was he blind?", answer: "Yes" },
-  { question: "Thats how he avoided it?", answer: "Solved" },
+  {
+    question:
+      "Thats how he avoided it, by beeing able to see while it was daylight?",
+    answer: "Solved",
+  },
   // { question: "Did I solve it?", answer: "Solved" },
 ];
