@@ -2,7 +2,7 @@ import { allGames } from "contentlayer/generated";
 import { cookies } from "next/headers";
 import { notFound } from "next/navigation";
 
-// searchParams is not supported in head.js
+// searchParams is not supported in head.js but in generateMetadata!
 
 export default function Head({ params }: { params: { slug: string } }) {
   // TODO: how to get url?_token or cookie()
@@ -16,7 +16,7 @@ export default function Head({ params }: { params: { slug: string } }) {
 
   return (
     <>
-      <title>Black Stories</title>
+      <title>Black Stories - {game.title}</title>
       <meta content="width=device-width, initial-scale=1" name="viewport" />
       <meta
         name="description"
