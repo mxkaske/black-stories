@@ -4,8 +4,12 @@ import Footer from "./components/footer";
 import Header from "./components/header";
 
 export const metadata = {
-  title: "Black Stories",
-  description: "Black Stories: OSS - Powered by Vercel and OpenAI",
+  title: {
+    default: "Black Stories",
+    template: "%s | Black Stories",
+  },
+  description:
+    "Can you solve the dark and twisted puzzles of Black Stories? Test your wits and unravel the mysteries in this thrilling game.",
   icons: {
     icon: "/favicon.ico",
   },

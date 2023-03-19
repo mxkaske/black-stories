@@ -15,6 +15,8 @@ import type { Metadata } from "next";
 // MOCK DATA
 // import { data } from "@/lib/mock";
 
+export const dynamic = "force-dynamic";
+
 export default async function Slug({ params }: { params: { slug: string } }) {
   const game = allGames.find((c) => c.slug === params.slug);
 
@@ -24,6 +26,7 @@ export default async function Slug({ params }: { params: { slug: string } }) {
 
   const token = cookies().get("token")?.value;
   const key = promptKeyBySlug(params.slug, token);
+  // REMINDER: here is the issue...
   const data = (await redis.zrange(key, 0, -1)) as ChatInteraction[];
 
   // TODO: check if vercel is compiling - last time it did not work
@@ -77,7 +80,7 @@ export function generateMetadata({
   }
 
   return {
-    title: `Black Stories - ${game.title}`,
+    title: game.title,
     openGraph: {
       images: [
         {
