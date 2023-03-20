@@ -1,15 +1,16 @@
 // import { allGames } from "contentlayer/generated";
 import allGames from "@/content/hotfix_allGames.json";
 import Link from "next/link";
+import UiLink from "@/components/ui/link";
 
 export default async function Home() {
   return (
-    <div className="mx-auto grid max-w-xl gap-4 py-4 sm:px-4">
+    <div className="mx-auto grid max-w-xl gap-10 py-4 sm:px-4">
       <div>
         <h1 className="max-w-sm text-xl font-semibold">
           Solving the Shadows: The Ultimate AI Black Stories Experience
         </h1>
-        <p className="mb-3 text-lg font-light">
+        <p className="text-lg font-light">
           Never be the storyteller again. Solve the mystery together.
         </p>
       </div>
@@ -31,6 +32,13 @@ export default async function Home() {
           </Link>
         ))}
       </ul>
+      <div>
+        <p className="font-light italic">
+          You have some suggestions, feedback, or a new black story to add? Feel
+          free to DM me{" "}
+          <UiLink href="https://twitter.com/mxkaske">@mxkaske</UiLink>.
+        </p>
+      </div>
     </div>
   );
 }
