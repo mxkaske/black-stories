@@ -2,7 +2,7 @@ import Link from "@/components/ui/link";
 
 export default function Footer() {
   return (
-    <footer className="border-t">
+    <footer className="border-t border-gray-100">
       <div className="mx-auto max-w-xl p-4">
         <p className="text-center text-sm font-light">
           Built by <Link href="https://twitter.com/mxkaske">@mxkaske</Link> ·

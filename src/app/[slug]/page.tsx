@@ -66,7 +66,7 @@ export default async function Slug({ params }: { params: { slug: string } }) {
           <div className="w-full bg-gradient-to-b from-transparent to-white/90 pb-2 text-right sm:px-4">
             {data.length > 0 ? <DISIButton slug={params.slug} /> : null}
           </div>
-          <div className="rounded-xl border p-3 shadow-sm backdrop-blur-lg">
+          <div className="rounded-xl border border-gray-100 p-3 shadow-sm backdrop-blur-lg">
             <Form slug={params.slug} />
           </div>
         </div>
