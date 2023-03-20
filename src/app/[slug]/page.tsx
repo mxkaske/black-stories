@@ -43,7 +43,7 @@ export default async function Slug({ params }: { params: { slug: string } }) {
         <p className="border-b border-gray-100 pb-4 text-gray-600">
           {game.description}
         </p>
-        <List data={data} />
+        {data.length > 0 ? <List data={data} /> : null}
         {/* TODO: add <Stats /> here */}
         {isSolved ? (
           <div className="space-y-5">
