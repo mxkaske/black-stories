@@ -10,7 +10,7 @@ export default async function Home() {
           Solving the Shadows: The Ultimate AI Black Stories Experience
         </h1>
         <p className="mb-3 text-lg font-light">
-          Never be the storyteller again and solve the mystery together.
+          Never be the storyteller again. Solve the mystery together.
         </p>
       </div>
       <ul className="grid gap-4 text-gray-900">
