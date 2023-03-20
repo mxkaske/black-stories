@@ -47,12 +47,14 @@ export default async function Slug({ params }: { params: { slug: string } }) {
         {/* TODO: add <Stats /> here */}
         {isSolved ? (
           <div className="space-y-5">
+            {/* TODO: add a "It's not accurate"-Button or "Continue"-Button */}
             <div className="text-center">
               <ShareButton slug={params.slug} />
             </div>
             <div>
               <Link href="/">
-                <ChevronLeft className="mb-1 inline h-4 w-4" /> Back
+                <ChevronLeft className="mr-1 mb-1 inline h-4 w-4" />
+                Back
               </Link>
             </div>
           </div>

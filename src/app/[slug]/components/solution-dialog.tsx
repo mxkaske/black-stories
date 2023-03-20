@@ -41,8 +41,11 @@ export default function SolutionDialog({ slug }: { slug: string }) {
       <DialogContent>
         <DialogHeader>
           <DialogTitle>Solution</DialogTitle>
-          {/* TODO: change description */}
-          <DialogDescription>What happend in: {game?.title}</DialogDescription>
+          <DialogDescription>
+            Discover what really happened in{" "}
+            <span className="font-medium text-gray-700">{`'${game?.title}'`}</span>
+            .
+          </DialogDescription>
         </DialogHeader>
         <DiscoverContent>{game?.solution}</DiscoverContent>
       </DialogContent>

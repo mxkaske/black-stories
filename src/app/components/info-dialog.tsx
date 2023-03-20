@@ -37,14 +37,14 @@ export default function InfoDialog() {
           <DialogTitle>{`How to play 'Black Stories'?`}</DialogTitle>
           {/* <DialogDescription></DialogDescription> */}
         </DialogHeader>
-        <div className="space-y-2 text-sm text-gray-700">
-          <p>{`You will be confronted to a specific situation. The goal of this game will be to find out how something specific happened.`}</p>
-          {/* TODO: List of AnswerIcon! */}
+        <div className="space-y-1 text-sm text-gray-700">
+          <p>You will be confronted to a mysterious story.</p>
           <p>
-            The possible answers to the questions you ask are{" "}
-            <span className="font-bold">ONLY</span>:
+            You will ask yes-or-no questions in order to try to solve the
+            mystory.
           </p>
-          <ul className="space-y-2">
+          <p>The only answers to your questions are: </p>
+          <ul className="my-3 space-y-1">
             {ANSWERS.map((answer) => (
               <li key={answer}>
                 <AnswerIcon answer={answer} />
@@ -54,10 +54,13 @@ export default function InfoDialog() {
               </li>
             ))}
           </ul>
-          <p>{`The game knows the context and remembers what you have asked.`}</p>
+          <p>
+            You must try to solve the mystery with the fewest questions
+            possible.
+          </p>
           <p>{`The game is over when the answer is 'Solved'. You might need to help the bot by clicking the 'Did I solve it?'-Button.`}</p>
           <p className="pt-4 text-xs text-gray-500">
-            {`This game is powered by OpenAI's GPT-3.`}
+            This game is powered by GPT-3 from OpenAI.
           </p>
         </div>
       </DialogContent>
