@@ -16,24 +16,28 @@ export default async function Home() {
         <p className="text-lg font-light">The anti-social Black Story game.</p>
       </div>
       <ul className="grid gap-4 text-gray-900">
-        {allGames.map(({ title, url, description, slug }, i) => {
-          return (
-            <Link
-              key={i}
-              href={url}
-              className="group rounded-lg border border-gray-100 py-3 px-4 hover:border-gray-200"
-            >
-              <li>
-                <p className="font-medium text-gray-900 underline-offset-4 group-hover:underline">
-                  {title}
-                </p>
-                <p className="text-gray-500 line-clamp-1 group-hover:text-gray-700">
-                  {description}
-                </p>
-              </li>
-            </Link>
-          );
-        })}
+        {allGames
+          .sort(
+            (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+          )
+          .map(({ title, url, description, slug }, i) => {
+            return (
+              <Link
+                key={i}
+                href={url}
+                className="group rounded-lg border border-gray-100 py-3 px-4 hover:border-gray-200"
+              >
+                <li>
+                  <p className="font-medium text-gray-900 underline-offset-4 group-hover:underline">
+                    {title}
+                  </p>
+                  <p className="text-gray-500 line-clamp-1 group-hover:text-gray-700">
+                    {description}
+                  </p>
+                </li>
+              </Link>
+            );
+          })}
       </ul>
       <div className="max-w-md space-y-4 px-4 font-light">
         <p>
