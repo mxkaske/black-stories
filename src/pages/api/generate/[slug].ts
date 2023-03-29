@@ -83,7 +83,8 @@ const handler = async (req: NextRequest) => {
           score: Date.now(),
           member: { question, answer },
         });
-        await redis.expire(key, 360000); // 60s * 60min * 100h
+
+        // await redis.expire(key, 360000); // 60s * 60min * 100h
 
         return new Response(JSON.stringify({ question, answer }), {
           headers: {

@@ -10,6 +10,7 @@ This is an Open Source project running with the awesome frameworks/libraries/API
 - [TailwindCSS](https://tailwindcss.com)
 - [Zod](https://zod.dev)
 - [OpenAI](https://openai.com)
+- [Contentlayer](https://contentlayer.dev) **Missing Nextjs 13.2.1 support**
 
 > This project is a Work In Progress. Feel free to DM me [@mxkaske](http://twitter.com/mxkaske) for feedback.
 
@@ -31,6 +32,7 @@ This is an Open Source project running with the awesome frameworks/libraries/API
 - Add a `not accurate` button for solved games that have not been solved yet
 - we have two mixing types, in `validation` and `types`
 - replace `lucide` with `hero` icons
+- create a filter on list (e.g. difficulty,..)
 
 ### TBD:
 
