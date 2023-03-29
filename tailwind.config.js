@@ -1,5 +1,5 @@
 /** @type {import('tailwindcss').Config} */
-const { fontFamily } = require("tailwindcss/defaultTheme")
+const { fontFamily } = require("tailwindcss/defaultTheme");
 
 module.exports = {
   // darkMode: ["class", '[data-theme="dark"]'],
@@ -25,5 +25,5 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/line-clamp"), require("tailwindcss-animate")],
+  plugins: [require("tailwindcss-animate")],
 };
