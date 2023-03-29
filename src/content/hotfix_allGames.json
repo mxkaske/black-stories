@@ -32,14 +32,6 @@
     "solution": "The woman is the assistant to a circus knife-thrower, who stands in front of a target as knives are thrown around her. The new shoes have higher heels than she normally wears, causing the thrower to misjudge his aim."
   },
   {
-    "slug": "sherlock-found-the-killer",
-    "url": "/sherlock-found-the-killer",
-    "title": "Sherlock found the killer",
-    "date": "2023-02-15",
-    "description": "Sherlock Holmes was walking down the corridor. Suddenly he heard a woman screaming, “Please, John, don’t kill me!” A shot rang. Holmes burst into the room. In one corner lay a dead woman and a gun. In another corner stood a postman, a lawyer, and an accountant. Sherlock looked at them, approached the postman, and grabbed him - “I will arrest you for killing this woman.” It was really the postman who killed this woman, but how could Holmes know it?",
-    "solution": "The postman was the only man. The lawyer and the accountant were women."
-  },
-  {
     "slug": "sweet-dreams",
     "url": "/sweet-dreams",
     "title": "Sweet dreams",
@@ -54,5 +46,29 @@
     "date": "2023-02-12",
     "description": "A black cat is walking through the middle of a road where there is a broken street lamp. A man is driving his vehicle with headlights that do not work. Despite all of this, he is able to avoid harming the cat.",
     "solution": "The man avoided the cat because it was daylight."
+  },
+  {
+    "slug": "unopened-package",
+    "url": "/unopened-package",
+    "title": "Unopened package",
+    "date": "2023-03-29",
+    "description": "A man is found dead in a field. Lying next to him is an unopened package.",
+    "solution": "The man was skydiving and his parachute did not open. The unopened package was his parachute."
+  },
+  {
+    "slug": "try-hard",
+    "url": "/try-hard",
+    "title": "Try hard",
+    "date": "2023-03-29",
+    "description": "A salesman tries too hard to get a sale and as a result ends up dying. ",
+    "solution": "The salesman sold bulletproof vests. One day, to prove the quality of his product to a customer, he put one of them on and insisted the client to shoot him. The client accepted but unfortunately he missed the shot and shot the salesman in the head."
+  },
+  {
+    "slug": "it-didnt-seem-that-serious",
+    "url": "/it-didnt-seem-that-serious",
+    "title": "It didn't seem that serious",
+    "date": "2023-03-29",
+    "description": "Anthony couldn't have imagine his cold would be the cause of his death.",
+    "solution": "There was a gas leak at Anthony's house but since he had a cold, he could not smell it. He died when he started a fire, as he was cooking his dinner."
   }
 ]
